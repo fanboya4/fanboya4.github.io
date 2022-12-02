@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Simply Static Pro	</title>
+	<atom:link href="/simply-static-pro/feed/" rel="self" type="application/rss+xml" />
+	<link>/simply-static-pro/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=simply-static-pro</link>
+	<description>What You See Is What We Share</description>
+	<lastBuildDate>Thu, 01 Dec 2022 20:33:15 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	
+	<item>
+		<title>
+		By: bibica		</title>
+		<link>/simply-static-pro/#comment-1075</link>
+
+		<dc:creator><![CDATA[bibica]]></dc:creator>
+		<pubDate>Tue, 29 Nov 2022 13:34:53 +0000</pubDate>
+		<guid isPermaLink="false">/?p=9777#comment-1075</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/simply-static-pro/#comment-1074&quot;&gt;thanh&lt;/a&gt;.
+
+Vâng, ý tưởng chính của plugin Simply Static ra đời là vì cách vận hành như thế mà
+
+Có điều thay vì dùng localhost, ta có thể dùng pantheonsite.io thay thế, thuận tiện hơn, và cũng FREE :D
+
+Xử lý thêm phần search, comment và contact nữa (https://patrickposner.dev/docs/simply-static/), lúc này trang web dù là tĩnh, nhưng có thể vận hành như 1 trang web &quot;động&quot; luôn
+
+Tất cả đều hoàn toàn miễn phí, mà lại có tốc độ và uptime ở tầm thế giới :D]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/simply-static-pro/#comment-1074">thanh</a>.</p>
+<p>Vâng, ý tưởng chính của plugin Simply Static ra đời là vì cách vận hành như thế mà</p>
+<p>Có điều thay vì dùng localhost, ta có thể dùng pantheonsite.io thay thế, thuận tiện hơn, và cũng FREE 😀</p>
+<p>Xử lý thêm phần search, comment và contact nữa (https://patrickposner.dev/docs/simply-static/), lúc này trang web dù là tĩnh, nhưng có thể vận hành như 1 trang web &#8220;động&#8221; luôn</p>
+<p>Tất cả đều hoàn toàn miễn phí, mà lại có tốc độ và uptime ở tầm thế giới 😀</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: thanh		</title>
+		<link>/simply-static-pro/#comment-1074</link>
+
+		<dc:creator><![CDATA[thanh]]></dc:creator>
+		<pubDate>Tue, 29 Nov 2022 13:23:09 +0000</pubDate>
+		<guid isPermaLink="false">/?p=9777#comment-1074</guid>
+
+					<description><![CDATA[vậy. nếu mình k có host. mình dùng localhost. và plugin simply statics này đẩy lên github được k nhỉ. vừa có web chạy vừa k tốn tiền ??]]></description>
+			<content:encoded><![CDATA[<p>vậy. nếu mình k có host. mình dùng localhost. và plugin simply statics này đẩy lên github được k nhỉ. vừa có web chạy vừa k tốn tiền ??</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>
