@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<script>var et_site_url='';var et_post_id='4473';function et_core_page_resource_fallback(a,b){"undefined"===typeof b&&(b=a.sheet.cssRules&&0===a.sheet.cssRules.length);b&&(a.onerror=null,a.onload=null,a.href?a.href=et_site_url+"/?et_core_page_resource="+a.id+et_post_id:a.src&&(a.src=et_site_url+"/?et_core_page_resource="+a.id+et_post_id))}</script><title>Nginx Fastcgi Cache, liệu có đáng dùng? – BIBICA.NET</title>
+<link rel="preload" href="/wp-content/uploads/2018/05/wordpress-nginx-fastcgi.png" as="image" imagesrcset="http://localhost/bibica.net/wp-content/uploads/2018/05/wordpress-nginx-fastcgi.png 800w, http://localhost/bibica.net/wp-content/uploads/2018/05/wordpress-nginx-fastcgi-300x150.png 300w, http://localhost/bibica.net/wp-content/uploads/2018/05/wordpress-nginx-fastcgi-500x250.png 500w, http://localhost/bibica.net/wp-content/uploads/2018/05/wordpress-nginx-fastcgi-725x363.png 725w, http://localhost/bibica.net/wp-content/uploads/2018/05/wordpress-nginx-fastcgi-20x10.png 20w" imagesizes="(max-width: 800px) 100vw, 800px">
+<link rel="preload" href="https://i2.wp.com/bibica.net/wp-content/uploads/2018/05/5-20-2018-12-16-56-pm.png?fit=898%2C661&amp;ssl=1" as="image" imagesrcset="http://localhost/bibica.net/wp-content/uploads/2018/05/5-20-2018-12-16-56-pm.png 898w, http://localhost/bibica.net/wp-content/uploads/2018/05/5-20-2018-12-16-56-pm-300x221.png 300w, http://localhost/bibica.net/wp-content/uploads/2018/05/5-20-2018-12-16-56-pm-500x368.png 500w, http://localhost/bibica.net/wp-content/uploads/2018/05/5-20-2018-12-16-56-pm-725x534.png 725w" imagesizes="(max-width: 898px) 100vw, 898px">
+<meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<link rel="preconnect" href="https://i0.wp.com/">
+<link rel="preconnect" href="https://i1.wp.com/">
+<link rel="preconnect" href="https://i2.wp.com/">
+<link rel="dns-prefetch" href="//i0.wp.com">
+<link rel="dns-prefetch" href="//i1.wp.com">
+<link rel="dns-prefetch" href="//i2.wp.com">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="alternate" type="application/rss+xml" title="BIBICA.NET » Feed" href="/feed/">
+<link rel="alternate" type="application/rss+xml" title="BIBICA.NET » Comments Feed" href="/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="BIBICA.NET » Nginx Fastcgi Cache, liệu có đáng dùng? Comments Feed" href="/nginx-fastcgi-cache-lieu-co-dang-dung/feed/">
+		<!-- This site uses the Google Analytics by MonsterInsights plugin v8.10.1 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+							<script src="//www.googletagmanager.com/gtag/js?id=G-6Y2T5Q1R88" data-cfasync="false" data-wpfc-render="false" async></script>
+			<script data-cfasync="false" data-wpfc-render="false">
+				var mi_version = '8.10.1';
+				var mi_track_user = true;
+				var mi_no_track_reason = '';
+				
+								var disableStrs = [
+										'ga-disable-G-6Y2T5Q1R88',
+														];
+
+				/* Function to detect opted out users */
+				function __gtagTrackerIsOptedOut() {
+					for (var index = 0; index < disableStrs.length; index++) {
+						if (document.cookie.indexOf(disableStrs[index] + '=true') > -1) {
+							return true;
+						}
+					}
+
+					return false;
+				}
+
+				/* Disable tracking if the opt-out cookie exists. */
+				if (__gtagTrackerIsOptedOut()) {
+					for (var index = 0; index < disableStrs.length; index++) {
+						window[disableStrs[index]] = true;
+					}
+				}
+
+				/* Opt-out function */
+				function __gtagTrackerOptout() {
+					for (var index = 0; index < disableStrs.length; index++) {
+						document.cookie = disableStrs[index] + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+						window[disableStrs[index]] = true;
+					}
+				}
+
+				if ('undefined' === typeof gaOptout) {
+					function gaOptout() {
+						__gtagTrackerOptout();
+					}
+				}
+								window.dataLayer = window.dataLayer || [];
+
+				window.MonsterInsightsDualTracker = {
+					helpers: {},
+					trackers: {},
+				};
+				if (mi_track_user) {
+					function __gtagDataLayer() {
+						dataLayer.push(arguments);
+					}
+
+					function __gtagTracker(type, name, parameters) {
+						if (!parameters) {
+							parameters = {};
+						}
+
+						if (parameters.send_to) {
+							__gtagDataLayer.apply(null, arguments);
+							return;
+						}
+
+						if (type === 'event') {
+														parameters.send_to = monsterinsights_frontend.v4_id;
+							var hookName = name;
+							if (typeof parameters['event_category'] !== 'undefined') {
+								hookName = parameters['event_category'] + ':' + name;
+							}
+
+							if (typeof MonsterInsightsDualTracker.trackers[hookName] !== 'undefined') {
+								MonsterInsightsDualTracker.trackers[hookName](parameters);
+							} else {
+								__gtagDataLayer('event', name, parameters);
+							}
+							
+													} else {
+							__gtagDataLayer.apply(null, arguments);
+						}
+					}
+
+					__gtagTracker('js', new Date());
+					__gtagTracker('set', {
+						'developer_id.dZGIzZG': true,
+											});
+										__gtagTracker('config', 'G-6Y2T5Q1R88', {"forceSSL":"true","link_attribution":"true","post_type":"post","tags":"untagged","published_at":"2018-05-20T12:46:33+07:00","category":"review,toolbox","author":"user-1","logged_in":"false"} );
+															window.gtag = __gtagTracker;										(function () {
+						/* https://developers.google.com/analytics/devguides/collection/analyticsjs/ */
+						/* ga and __gaTracker compatibility shim. */
+						var noopfn = function () {
+							return null;
+						};
+						var newtracker = function () {
+							return new Tracker();
+						};
+						var Tracker = function () {
+							return null;
+						};
+						var p = Tracker.prototype;
+						p.get = noopfn;
+						p.set = noopfn;
+						p.send = function () {
+							var args = Array.prototype.slice.call(arguments);
+							args.unshift('send');
+							__gaTracker.apply(null, args);
+						};
+						var __gaTracker = function () {
+							var len = arguments.length;
+							if (len === 0) {
+								return;
+							}
+							var f = arguments[len - 1];
+							if (typeof f !== 'object' || f === null || typeof f.hitCallback !== 'function') {
+								if ('send' === arguments[0]) {
+									var hitConverted, hitObject = false, action;
+									if ('event' === arguments[1]) {
+										if ('undefined' !== typeof arguments[3]) {
+											hitObject = {
+												'eventAction': arguments[3],
+												'eventCategory': arguments[2],
+												'eventLabel': arguments[4],
+												'value': arguments[5] ? arguments[5] : 1,
+											}
+										}
+									}
+									if ('pageview' === arguments[1]) {
+										if ('undefined' !== typeof arguments[2]) {
+											hitObject = {
+												'eventAction': 'page_view',
+												'page_path': arguments[2],
+											}
+										}
+									}
+									if (typeof arguments[2] === 'object') {
+										hitObject = arguments[2];
+									}
+									if (typeof arguments[5] === 'object') {
+										Object.assign(hitObject, arguments[5]);
+									}
+									if ('undefined' !== typeof arguments[1].hitType) {
+										hitObject = arguments[1];
+										if ('pageview' === hitObject.hitType) {
+											hitObject.eventAction = 'page_view';
+										}
+									}
+									if (hitObject) {
+										action = 'timing' === arguments[1].hitType ? 'timing_complete' : hitObject.eventAction;
+										hitConverted = mapArgs(hitObject);
+										__gtagTracker('event', action, hitConverted);
+									}
+								}
+								return;
+							}
+
+							function mapArgs(args) {
+								var arg, hit = {};
+								var gaMap = {
+									'eventCategory': 'event_category',
+									'eventAction': 'event_action',
+									'eventLabel': 'event_label',
+									'eventValue': 'event_value',
+									'nonInteraction': 'non_interaction',
+									'timingCategory': 'event_category',
+									'timingVar': 'name',
+									'timingValue': 'value',
+									'timingLabel': 'event_label',
+									'page': 'page_path',
+									'location': 'page_location',
+									'title': 'page_title',
+								};
+								for (arg in args) {
+																		if (!(!args.hasOwnProperty(arg) || !gaMap.hasOwnProperty(arg))) {
+										hit[gaMap[arg]] = args[arg];
+									} else {
+										hit[arg] = args[arg];
+									}
+								}
+								return hit;
+							}
+
+							try {
+								f.hitCallback();
+							} catch (ex) {
+							}
+						};
+						__gaTracker.create = newtracker;
+						__gaTracker.getByName = newtracker;
+						__gaTracker.getAll = function () {
+							return [];
+						};
+						__gaTracker.remove = noopfn;
+						__gaTracker.loaded = true;
+						window['__gaTracker'] = __gaTracker;
+					})();
+									} else {
+										console.log("");
+					(function () {
+						function __gtagTracker() {
+							return null;
+						}
+
+						window['__gtagTracker'] = __gtagTracker;
+						window['gtag'] = __gtagTracker;
+					})();
+									}
+			</script>
+				<!-- / Google Analytics by MonsterInsights -->
+		<link rel="stylesheet" id="wp-block-library-css" href="/wp-includes/css/dist/block-library/style.min.css?ver=6.1.1" media="all">
+<link rel="stylesheet" id="classic-theme-styles-css" href="/wp-includes/css/classic-themes.min.css?ver=1" media="all">
+<link rel="stylesheet" id="stcr-style-css" href="/wp-content/plugins/subscribe-to-comments-reloaded/includes/css/stcr-style.css?ver=6.1.1" media="all">
+<link rel="stylesheet" id="passster-public-css" href="/wp-content/plugins/content-protector/assets/public/passster-public.min.css?ver=3.5.5.8" media="all">
+<link rel="stylesheet" id="orbisius_ct_bibica_review_01_parent_style-css" href="/wp-content/themes/generatepress/style.css?ver=3.2.4" media="all">
+<link rel="stylesheet" id="orbisius_ct_bibica_review_01_parent_style_child_style-css" href="/wp-content/themes/bibica-review/style.css?ver=1.1" media="all">
+<link rel="stylesheet" id="generate-style-grid-css" href="/wp-content/themes/generatepress/assets/css/unsemantic-grid.min.css?ver=3.2.4" media="all">
+<link rel="stylesheet" id="generate-style-css" href="/wp-content/themes/generatepress/assets/css/style.min.css?ver=3.2.4" media="all">
+<style id="generate-style-inline-css">.featured-image img {width: 725px;}
+body{background-color:#e9ebee;color:#0c0000;}a{color:#343e47;}a:visited{color:#343e47;}a:hover, a:focus, a:active{color:#000000;}body .grid-container{max-width:1100px;}.wp-block-group__inner-container{max-width:1100px;margin-left:auto;margin-right:auto;}.generate-back-to-top{font-size:20px;border-radius:3px;position:fixed;bottom:30px;right:30px;line-height:40px;width:40px;text-align:center;z-index:10;transition:opacity 300ms ease-in-out;opacity:0.1;transform:translateY(1000px);}.generate-back-to-top__show{opacity:1;transform:translateY(0);}.navigation-search{position:absolute;left:-99999px;pointer-events:none;visibility:hidden;z-index:20;width:100%;top:0;transition:opacity 100ms ease-in-out;opacity:0;}.navigation-search.nav-search-active{left:0;right:0;pointer-events:auto;visibility:visible;opacity:1;}.navigation-search input[type="search"]{outline:0;border:0;vertical-align:bottom;line-height:1;opacity:0.9;width:100%;z-index:20;border-radius:0;-webkit-appearance:none;height:60px;}.navigation-search input::-ms-clear{display:none;width:0;height:0;}.navigation-search input::-ms-reveal{display:none;width:0;height:0;}.navigation-search input::-webkit-search-decoration, .navigation-search input::-webkit-search-cancel-button, .navigation-search input::-webkit-search-results-button, .navigation-search input::-webkit-search-results-decoration{display:none;}.main-navigation li.search-item{z-index:21;}li.search-item.active{transition:opacity 100ms ease-in-out;}.nav-left-sidebar .main-navigation li.search-item.active,.nav-right-sidebar .main-navigation li.search-item.active{width:auto;display:inline-block;float:right;}.gen-sidebar-nav .navigation-search{top:auto;bottom:0;}:root{--contrast:#222222;--contrast-2:#575760;--contrast-3:#b2b2be;--base:#f0f0f0;--base-2:#f7f8f9;--base-3:#ffffff;--accent:#1e73be;}.has-contrast-color{color:var(--contrast);}.has-contrast-background-color{background-color:var(--contrast);}.has-contrast-2-color{color:var(--contrast-2);}.has-contrast-2-background-color{background-color:var(--contrast-2);}.has-contrast-3-color{color:var(--contrast-3);}.has-contrast-3-background-color{background-color:var(--contrast-3);}.has-base-color{color:var(--base);}.has-base-background-color{background-color:var(--base);}.has-base-2-color{color:var(--base-2);}.has-base-2-background-color{background-color:var(--base-2);}.has-base-3-color{color:var(--base-3);}.has-base-3-background-color{background-color:var(--base-3);}.has-accent-color{color:var(--accent);}.has-accent-background-color{background-color:var(--accent);}body, button, input, select, textarea{font-family:-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";}body{line-height:1.5;}p{margin-bottom:1em;}.entry-content > [class*="wp-block-"]:not(:last-child){margin-bottom:1em;}.main-title{font-family:-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";font-weight:normal;font-size:45px;}.site-description{font-family:-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";}.main-navigation a, .menu-toggle{font-family:-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";text-transform:uppercase;}.main-navigation .main-nav ul ul li a{font-size:14px;}.widget-title{font-family:-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";font-weight:bold;text-transform:capitalize;font-size:25px;margin-bottom:15px;}.sidebar .widget, .footer-widgets .widget{font-size:17px;}button:not(.menu-toggle),html input[type="button"],input[type="reset"],input[type="submit"],.button,.wp-block-button .wp-block-button__link{font-family:-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";font-weight:400;}h1{font-family:-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";font-weight:600;text-transform:capitalize;font-size:30px;}h2{font-family:-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";font-weight:600;text-transform:capitalize;font-size:30px;}h3{font-family:-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";font-weight:bold;font-size:20px;}h4{font-family:-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";font-size:inherit;}h5{font-family:-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";font-size:inherit;}h6{font-family:-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";}.site-info{font-family:-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";font-weight:400;text-transform:capitalize;font-size:16px;}@media (max-width:768px){.main-title{font-size:30px;}h1{font-size:30px;}h2{font-size:25px;}}.top-bar{background-color:#636363;color:#222222;}.top-bar a{color:#f4911f;}.top-bar a:hover{color:#222222;}.site-header{background-color:#343e47;color:#3a3a3a;}.site-header a{color:#3a3a3a;}.main-title a,.main-title a:hover{color:#ffffff;}.site-description{color:#ffffff;}.mobile-menu-control-wrapper .menu-toggle,.mobile-menu-control-wrapper .menu-toggle:hover,.mobile-menu-control-wrapper .menu-toggle:focus,.has-inline-mobile-toggle #site-navigation.toggled{background-color:rgba(0, 0, 0, 0.02);}.main-navigation,.main-navigation ul ul{background-color:#343e47;}.main-navigation .main-nav ul li a, .main-navigation .menu-toggle, .main-navigation .menu-bar-items{color:#ffffff;}.main-navigation .main-nav ul li:not([class*="current-menu-"]):hover > a, .main-navigation .main-nav ul li:not([class*="current-menu-"]):focus > a, .main-navigation .main-nav ul li.sfHover:not([class*="current-menu-"]) > a, .main-navigation .menu-bar-item:hover > a, .main-navigation .menu-bar-item.sfHover > a{color:#e2e2e2;background-color:#343e47;}button.menu-toggle:hover,button.menu-toggle:focus,.main-navigation .mobile-bar-items a,.main-navigation .mobile-bar-items a:hover,.main-navigation .mobile-bar-items a:focus{color:#ffffff;}.main-navigation .main-nav ul li[class*="current-menu-"] > a{color:#ffffff;background-color:#343e47;}.navigation-search input[type="search"],.navigation-search input[type="search"]:active, .navigation-search input[type="search"]:focus, .main-navigation .main-nav ul li.search-item.active > a, .main-navigation .menu-bar-items .search-item.active > a{color:#e2e2e2;background-color:#343e47;}.main-navigation ul ul{background-color:#343e47;}.main-navigation .main-nav ul ul li a{color:#ffffff;}.main-navigation .main-nav ul ul li:not([class*="current-menu-"]):hover > a,.main-navigation .main-nav ul ul li:not([class*="current-menu-"]):focus > a, .main-navigation .main-nav ul ul li.sfHover:not([class*="current-menu-"]) > a{color:#ffffff;background-color:#343e47;}.main-navigation .main-nav ul ul li[class*="current-menu-"] > a{color:#ffffff;background-color:#343e47;}.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .one-container .container, .separate-containers .paging-navigation, .inside-page-header{color:#0c0c0c;background-color:#ffffff;}.inside-article a,.paging-navigation a,.comments-area a,.page-header a{color:#277ee4;}.inside-article a:hover,.paging-navigation a:hover,.comments-area a:hover,.page-header a:hover{color:#7600f4;}.entry-header h1,.page-header h1{color:#343e47;}.entry-title a{color:#343e47;}.entry-title a:hover{color:#343e47;}.entry-meta{color:#90949c;}.entry-meta a{color:#595959;}.entry-meta a:hover{color:#1e73be;}.sidebar .widget{color:#282828;background-color:#e9ebee;}.sidebar .widget a{color:#282828;}.sidebar .widget a:hover{color:#277ee4;}.sidebar .widget .widget-title{color:#343e47;}.footer-widgets{color:#282828;background-color:#ffffff;}.footer-widgets a{color:#282828;}.footer-widgets a:hover{color:#b5b5b5;}.footer-widgets .widget-title{color:#343e47;}.site-info{color:#90949c;background-color:#e9ebee;}.site-info a{color:#90949c;}.site-info a:hover{color:#277ee4;}.footer-bar .widget_nav_menu .current-menu-item a{color:#277ee4;}input[type="text"],input[type="email"],input[type="url"],input[type="password"],input[type="search"],input[type="tel"],input[type="number"],textarea,select{color:#666666;background-color:#fafafa;border-color:#cccccc;}input[type="text"]:focus,input[type="email"]:focus,input[type="url"]:focus,input[type="password"]:focus,input[type="search"]:focus,input[type="tel"]:focus,input[type="number"]:focus,textarea:focus,select:focus{color:#343e47;background-color:#ffffff;border-color:#bfbfbf;}button,html input[type="button"],input[type="reset"],input[type="submit"],a.button,a.wp-block-button__link:not(.has-background){color:#ffffff;background-color:#343e47;}button:hover,html input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover,a.button:hover,button:focus,html input[type="button"]:focus,input[type="reset"]:focus,input[type="submit"]:focus,a.button:focus,a.wp-block-button__link:not(.has-background):active,a.wp-block-button__link:not(.has-background):focus,a.wp-block-button__link:not(.has-background):hover{color:#ffffff;background-color:#666666;}a.generate-back-to-top{background-color:#f77b0e;color:#ffffff;}a.generate-back-to-top:hover,a.generate-back-to-top:focus{background-color:#f7b276;color:#ffffff;}@media (max-width: 768px){.main-navigation .menu-bar-item:hover > a, .main-navigation .menu-bar-item.sfHover > a{background:none;color:#ffffff;}}.inside-top-bar{padding:5px 10px 5px 10px;}.inside-header{padding:10px;}.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header{padding:20px;}.site-main .wp-block-group__inner-container{padding:20px;}.entry-content .alignwide, body:not(.no-sidebar) .entry-content .alignfull{margin-left:-20px;width:calc(100% + 40px);max-width:calc(100% + 40px);}.one-container.right-sidebar .site-main,.one-container.both-right .site-main{margin-right:20px;}.one-container.left-sidebar .site-main,.one-container.both-left .site-main{margin-left:20px;}.one-container.both-sidebars .site-main{margin:0px 20px 0px 20px;}.main-navigation .main-nav ul li a,.menu-toggle,.main-navigation .mobile-bar-items a{padding-left:7px;padding-right:7px;line-height:75px;}.main-navigation .main-nav ul ul li a{padding:10px 7px 10px 7px;}.navigation-search input[type="search"]{height:75px;}.rtl .menu-item-has-children .dropdown-menu-toggle{padding-left:7px;}.menu-item-has-children .dropdown-menu-toggle{padding-right:7px;}.rtl .main-navigation .main-nav ul li.menu-item-has-children > a{padding-right:7px;}.widget-area .widget{padding:20px;}.footer-widgets{padding:20px;}.site-info{padding:20px;}@media (max-width:768px){.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header{padding:30px;}.site-main .wp-block-group__inner-container{padding:30px;}.site-info{padding-right:10px;padding-left:10px;}.entry-content .alignwide, body:not(.no-sidebar) .entry-content .alignfull{margin-left:-30px;width:calc(100% + 60px);max-width:calc(100% + 60px);}}/* End cached CSS */@media (max-width: 768px){.main-navigation .menu-toggle,.main-navigation .mobile-bar-items,.sidebar-nav-mobile:not(#sticky-placeholder){display:block;}.main-navigation ul,.gen-sidebar-nav{display:none;}[class*="nav-float-"] .site-header .inside-header > *{float:none;clear:both;}}
+.main-navigation.toggled .main-nav > ul{background-color: #343e47}
+.navigation-branding .main-title{font-weight:normal;text-transform:none;font-size:45px;font-family:-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";}@media (max-width: 768px){.navigation-branding .main-title{font-size:30px;}}</style>
+<link rel="stylesheet" id="generate-mobile-style-css" href="/wp-content/themes/generatepress/assets/css/mobile.min.css?ver=3.2.4" media="all">
+<link rel="stylesheet" id="generate-font-icons-css" href="/wp-content/themes/generatepress/assets/css/components/font-icons.min.css?ver=3.2.4" media="all">
+<link rel="stylesheet" id="font-awesome-css" href="/wp-content/themes/generatepress/assets/css/components/font-awesome.min.css?ver=4.7" media="all">
+<link rel="stylesheet" id="generate-child-css" href="/wp-content/themes/bibica-review/style.css?ver=1670003882" media="all">
+<link rel="stylesheet" id="tablepress-default-css" href="/wp-content/plugins/tablepress/css/default.min.css?ver=1.14" media="all">
+<link rel="stylesheet" id="generate-blog-images-css" href="/wp-content/plugins/gp-premium/blog/functions/css/featured-images.min.css?ver=2.2.1" media="all">
+<link rel="stylesheet" id="enlighterjs-css" href="/wp-content/plugins/enlighter/cache/enlighterjs.min.css?ver=kqWMOImuOYrkq3u" media="all">
+<link rel="stylesheet" id="generate-navigation-branding-css" href="/wp-content/plugins/gp-premium/menu-plus/functions/css/navigation-branding.min.css?ver=2.2.1" media="all">
+<style id="generate-navigation-branding-inline-css">@media (max-width: 768px){.site-header, #site-navigation, #sticky-navigation{display:none !important;opacity:0.0;}#mobile-header{display:block !important;width:100% !important;}#mobile-header .main-nav > ul{display:none;}#mobile-header.toggled .main-nav > ul, #mobile-header .menu-toggle, #mobile-header .mobile-bar-items{display:block;}#mobile-header .main-nav{-ms-flex:0 0 100%;flex:0 0 100%;-webkit-box-ordinal-group:5;-ms-flex-order:4;order:4;}}.navigation-branding img, .site-logo.mobile-header-logo img{height:75px;width:auto;}.navigation-branding .main-title{line-height:75px;}@media (max-width: 1110px){#site-navigation .navigation-branding, #sticky-navigation .navigation-branding{margin-left:10px;}}@media (max-width: 768px){.main-navigation:not(.slideout-navigation) .main-nav{-ms-flex:0 0 100%;flex:0 0 100%;}.main-navigation:not(.slideout-navigation) .inside-navigation{-ms-flex-wrap:wrap;flex-wrap:wrap;display:-webkit-box;display:-ms-flexbox;display:flex;}.nav-aligned-center .navigation-branding, .nav-aligned-left .navigation-branding{margin-right:auto;}.nav-aligned-center  .main-navigation.has-branding:not(.slideout-navigation) .inside-navigation .main-nav,.nav-aligned-center  .main-navigation.has-sticky-branding.navigation-stick .inside-navigation .main-nav,.nav-aligned-left  .main-navigation.has-branding:not(.slideout-navigation) .inside-navigation .main-nav,.nav-aligned-left  .main-navigation.has-sticky-branding.navigation-stick .inside-navigation .main-nav{margin-right:0px;}}</style>
+<script src="/wp-includes/js/jquery/jquery.min.js?ver=3.6.1" id="jquery-core-js"></script>
+<script src="/wp-content/plugins/google-analytics-premium/assets/js/frontend-gtag.min.js?ver=8.10.1" id="monsterinsights-frontend-script-js"></script>
+<script data-cfasync="false" data-wpfc-render="false" id="monsterinsights-frontend-script-js-extra">var monsterinsights_frontend = {"js_events_tracking":"true","download_extensions":"doc,pdf,ppt,zip,xls,docx,pptx,xlsx","inbound_paths":"[{\"path\":\"\\\/go\\\/\",\"label\":\"affiliate\"},{\"path\":\"\\\/recommend\\\/\",\"label\":\"affiliate\"}]","home_url":"","hash_tracking":"false","ua":"","v4_id":"G-6Y2T5Q1R88"};</script>
+<script src="/wp-content/plugins/content-protector/assets/public/cookie.js?ver=6.1.1" id="passster-cookie-js"></script>
+<script src="/wp-content/plugins/content-protector/assets/public/captcha.js?ver=6.1.1" id="passster-captcha-js"></script>
+<script id="passster-public-js-extra">var ps_ajax = {"ajax_url":"\/wp-admin\/admin-ajax.php","days":"2","use_cookie":"off","no_ajax":"off","nonce":"ba9de916ec","hash_nonce":"debfdd725b","logout_nonce":"72a5dd9e4b","post_id":"4473","captcha_error":"Sorry, your captcha solution was wrong.","recaptcha_key":"","shortcodes":{"[passster-logout]":"[passster-logout]"},"permalink":"\/nginx-fastcgi-cache-lieu-co-dang-dung\/"};</script>
+<script src="/wp-content/plugins/content-protector/assets/public/passster-public.min.js?ver=3.5.5.8" id="passster-public-js"></script>
+<link rel="canonical" href="/nginx-fastcgi-cache-lieu-co-dang-dung/">
+		<meta name="ssp-url">
+		<meta name="ssp-origin-url" content="aHR0cDovL2xvY2FsaG9zdC9iaWJpY2EubmV0">
+
+					<meta name="ssp-config-url" content="/wp-content/uploads/simply-static/configs/">
+		
+				<style type="text/css" id="et-bloom-custom-css">.et_bloom .et_bloom_optin_1 .et_bloom_form_content { background-color: #e9ebee !important; } .et_bloom .et_bloom_optin_1 .et_bloom_form_container .et_bloom_form_header { background-color: #343e47 !important; } .et_bloom .et_bloom_optin_1 .et_bloom_form_content button { background-color: #dd3333 !important; } .et_bloom .et_bloom_optin_1 .et_bloom_form_content .et_bloom_fields i { color: #dd3333 !important; } .et_bloom .et_bloom_optin_1 .et_bloom_form_content .et_bloom_custom_field_radio i:before { background: #dd3333 !important; } .et_bloom .et_bloom_optin_1 .et_bloom_form_content button { background-color: #dd3333 !important; } .et_bloom .et_bloom_optin_1 .et_bloom_form_container h2, .et_bloom .et_bloom_optin_1 .et_bloom_form_container h2 span, .et_bloom .et_bloom_optin_1 .et_bloom_form_container h2 strong { font-family: "Open Sans", Helvetica, Arial, Lucida, sans-serif; }.et_bloom .et_bloom_optin_1 .et_bloom_form_container p, .et_bloom .et_bloom_optin_1 .et_bloom_form_container p span, .et_bloom .et_bloom_optin_1 .et_bloom_form_container p strong, .et_bloom .et_bloom_optin_1 .et_bloom_form_container form input, .et_bloom .et_bloom_optin_1 .et_bloom_form_container form button span { font-family: "Open Sans", Helvetica, Arial, Lucida, sans-serif; }</style>
+<link rel="preload" href="/wp-content/plugins/bloom/core/admin/fonts/modules.ttf" as="font" crossorigin="anonymous">		<style>.passster-form {
+			background: #F9F9F9;
+			padding: 30px;
+			margin: 0px;
+		}
+		.passster-form h4 {
+			font-size: 20px;
+			font-weight: 700;
+			color: #6804cc;
+		}
+		.passster-form p {
+			font-size: 14px;
+			font-weight: 400;
+			color: #000000;
+		}
+		.passster-submit, .passster-submit-recaptcha, .passster-submit-captcha {
+			color: #FFFFFF !important;
+			background: #6804cc !important;
+		}
+		.passster-submit:hover, .passster-submit-recaptcha:hover, .passster-submit-captcha:hover {
+			color: #FFFFFF !important;
+			background: #2e0557 !important;
+		}</style>
+		<style type="text/css">.rp4wp-related-posts ul{width:100%;padding:0;margin:0;float:left;}
+.rp4wp-related-posts ul>li{list-style:none;padding:0;margin:0;padding-bottom:20px;clear:both;}
+.rp4wp-related-posts ul>li>p{margin:0;padding:0;}
+.rp4wp-related-post-image{width:20%;padding-right:25px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;float:left;}</style>
+<meta name="description" content="Đứng ở góc độ cá nhân, mình thấy WP Rocket là plugin cache tuyệt vời nhất, đơn giản vì họ vẫn đang support sản phẩm cực kì tốt, nôm na là dùng WP Rocket bạn có ">
+<meta property="og:title" content="Nginx Fastcgi Cache, liệu có đáng dùng? – BIBICA.NET">
+<meta property="og:type" content="article">
+<meta property="og:image" content="/wp-content/uploads/2018/05/wordpress-nginx-fastcgi.png">
+<meta property="og:image:width" content="800">
+<meta property="og:image:height" content="400">
+<meta property="og:description" content="Đứng ở góc độ cá nhân, mình thấy WP Rocket là plugin cache tuyệt vời nhất, đơn giản vì họ vẫn đang support sản phẩm cực kì tốt, nôm na là dùng WP Rocket bạn có ">
+<meta property="og:url" content="/nginx-fastcgi-cache-lieu-co-dang-dung/">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="BIBICA.NET">
+<meta property="article:published_time" content="2018-05-20T05:46:33+00:00">
+<meta property="article:modified_time" content="2020-04-02T00:35:27+00:00">
+<meta property="og:updated_time" content="2020-04-02T00:35:27+00:00">
+<meta property="article:section" content="Review">
+<meta property="article:author" content="bibica">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="/wp-content/uploads/2018/05/wordpress-nginx-fastcgi.png">
+<link rel="icon" href="/wp-content/uploads/2017/12/cropped-563a3a6682276d793436-1-32x32.jpg" sizes="32x32">
+<link rel="icon" href="/wp-content/uploads/2017/12/cropped-563a3a6682276d793436-1-192x192.jpg" sizes="192x192">
+<link rel="apple-touch-icon" href="/wp-content/uploads/2017/12/cropped-563a3a6682276d793436-1-180x180.jpg">
+<meta name="msapplication-TileImage" content="/wp-content/uploads/2017/12/cropped-563a3a6682276d793436-1-270x270.jpg">
+		<style id="wp-custom-css">.generate-back-to-top,
+.generate-back-to-top:visited {
+    border-radius: 20px; /* how round the button is */
+    line-height: 40px; /* how tall it is */
+    width: 40px; /* how wide it is */
+}</style>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body itemtype="https://schema.org/Blog" itemscope="itemscope" class="post-template-default single single-post postid-4473 single-format-standard wp-embed-responsive post-image-below-header post-image-aligned-center sticky-menu-fade mobile-header mobile-header-sticky et_bloom wp-featherlight-captions right-sidebar nav-float-right separate-containers fluid-header active-footer-widgets-0 nav-search-enabled header-aligned-left dropdown-hover featured-image-active">
+	<a class="screen-reader-text skip-link" href="#content" title="Skip to content">Skip to content</a>		<header class="site-header" id="masthead" aria-label="Site" itemtype="https://schema.org/WPHeader" itemscope>
+			<div class="inside-header grid-container grid-parent">
+				<div class="site-branding">
+						<p class="main-title" itemprop="headline">
+					<a href="/" rel="home">
+						BIBICA.NET
+					</a>
+				</p>
+						<p class="site-description" itemprop="description">
+					What You See Is What We Share
+				</p>
+					</div>		<nav class="main-navigation sub-menu-right" id="site-navigation" aria-label="Primary" itemtype="https://schema.org/SiteNavigationElement" itemscope>
+			<div class="inside-navigation grid-container grid-parent">
+				<form method="get" class="search-form navigation-search" action="http://localhost/bibica.net/">
+					<input type="search" class="search-field" value="" name="s" title="Search">
+				</form>		<div class="mobile-bar-items">
+						<span class="search-item">
+				<a aria-label="Open Search Bar" href="#">
+									</a>
+			</span>
+		</div>
+						<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+					<span class="mobile-menu">Menu</span>				</button>
+				<div id="primary-menu" class="main-nav"><ul id="menu-menu-trang-chu" class=" menu sf-menu">
+<li id="menu-item-2528" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-has-children menu-item-2528">
+<a title="Home"><i class="fa fa-home" aria-hidden="true"></i> Home<span role="presentation" class="dropdown-menu-toggle"></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-2529" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-2529"><a title="Toolbox" href="/category/toolbox/"><i class="fa fa-wrench" aria-hidden="true"></i> Toolbox</a></li>
+	<li id="menu-item-2530" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-2530"><a title="Review" href="/category/review/"><i class="fa fa-eye" aria-hidden="true"></i> Review</a></li>
+	<li id="menu-item-2531" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2531"><a title="Advertisement" href="/category/review/advertisement/"><i class="fa fa-handshake-o" aria-hidden="true"></i> Advertisement</a></li>
+	<li id="menu-item-2532" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2532"><a title="Chat Chit" href="/category/lam-nham/"><i class="fa fa-commenting-o" aria-hidden="true"></i> Chat Chit</a></li>
+</ul>
+</li>
+<li id="menu-item-1381" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1381"><a title="Shop" target="_blank" rel="noopener" href="http://ngoirungdui.com/shop/"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Shop</a></li>
+<li id="menu-item-276" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-276"><a title="Toolbox" href="/toolbox/"><i class="fa fa-wrench" aria-hidden="true"></i> Toolbox</a></li>
+<li id="menu-item-1902" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1902"><a title="Speed Up" href="/tang-toc-toi-uu-hoa-cho-wordpress/"><i class="fa fa-rocket" aria-hidden="true"></i> Speed Up</a></li>
+<li id="menu-item-1952" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1952">
+<a title="Service" href="/service/"><i class="fa  fa-thumbs-o-up"></i> Service<span role="presentation" class="dropdown-menu-toggle"></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-2767" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2767"><a title="Monitor Uptime" target="_blank" rel="noopener" href="https://www.uptimedoctor.com/publicreport/gwv1lv4l/147562/1/471535"><i class="fa fa-desktop" aria-hidden="true"></i> Monitor Uptime</a></li>
+	<li id="menu-item-2770" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2770"><a title="Archives" href="/archives/"><i class="fa fa-archive" aria-hidden="true"></i> Archives</a></li>
+</ul>
+</li>
+<li id="menu-item-1967" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1967"><a title="History" href="/history/"><i class="fa fa-history" aria-hidden="true"></i> History</a></li>
+<li id="menu-item-1937" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1937"><a title="Contact Us" href="/contact/"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a></li>
+<li id="menu-item-2605" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2605"><a title="Facebook" target="_blank" rel="noopener" href="http://fb.com/bibica.net"><i class="fa fa-facebook fa" aria-hidden="true"></i></a></li>
+<li id="menu-item-3274" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3274"><a title="Twitter" target="_blank" rel="noopener" href="https://twitter.com/b2bteams"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+<li class="search-item menu-item-align-right"><a aria-label="Open Search Bar" href="#"></a></li>
+</ul></div>			</div>
+		</nav>
+					</div>
+		</header>
+				<nav id="mobile-header" itemtype="https://schema.org/SiteNavigationElement" itemscope class="main-navigation mobile-header-navigation">
+			<div class="inside-navigation grid-container grid-parent">
+				<form method="get" class="search-form navigation-search" action="http://localhost/bibica.net/">
+					<input type="search" class="search-field" value="" name="s" title="Search">
+				</form>		<div class="mobile-bar-items">
+						<span class="search-item">
+				<a aria-label="Open Search Bar" href="#">
+									</a>
+			</span>
+		</div>
+							<button class="menu-toggle" aria-controls="mobile-menu" aria-expanded="false">
+						<span class="mobile-menu">Menu</span>					</button>
+					<div id="mobile-menu" class="main-nav"><ul id="menu-menu-trang-chu-1" class=" menu sf-menu">
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-has-children menu-item-2528">
+<a title="Home"><i class="fa fa-home" aria-hidden="true"></i> Home<span role="presentation" class="dropdown-menu-toggle"></span></a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-2529"><a title="Toolbox" href="/category/toolbox/"><i class="fa fa-wrench" aria-hidden="true"></i> Toolbox</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-2530"><a title="Review" href="/category/review/"><i class="fa fa-eye" aria-hidden="true"></i> Review</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2531"><a title="Advertisement" href="/category/review/advertisement/"><i class="fa fa-handshake-o" aria-hidden="true"></i> Advertisement</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2532"><a title="Chat Chit" href="/category/lam-nham/"><i class="fa fa-commenting-o" aria-hidden="true"></i> Chat Chit</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1381"><a title="Shop" target="_blank" rel="noopener" href="http://ngoirungdui.com/shop/"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Shop</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-276"><a title="Toolbox" href="/toolbox/"><i class="fa fa-wrench" aria-hidden="true"></i> Toolbox</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1902"><a title="Speed Up" href="/tang-toc-toi-uu-hoa-cho-wordpress/"><i class="fa fa-rocket" aria-hidden="true"></i> Speed Up</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1952">
+<a title="Service" href="/service/"><i class="fa  fa-thumbs-o-up"></i> Service<span role="presentation" class="dropdown-menu-toggle"></span></a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2767"><a title="Monitor Uptime" target="_blank" rel="noopener" href="https://www.uptimedoctor.com/publicreport/gwv1lv4l/147562/1/471535"><i class="fa fa-desktop" aria-hidden="true"></i> Monitor Uptime</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2770"><a title="Archives" href="/archives/"><i class="fa fa-archive" aria-hidden="true"></i> Archives</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1967"><a title="History" href="/history/"><i class="fa fa-history" aria-hidden="true"></i> History</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1937"><a title="Contact Us" href="/contact/"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2605"><a title="Facebook" target="_blank" rel="noopener" href="http://fb.com/bibica.net"><i class="fa fa-facebook fa" aria-hidden="true"></i></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3274"><a title="Twitter" target="_blank" rel="noopener" href="https://twitter.com/b2bteams"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+<li class="search-item menu-item-align-right"><a aria-label="Open Search Bar" href="#"></a></li>
+</ul></div>			</div>
+<!-- .inside-navigation -->
+		</nav><!-- #site-navigation -->
+		
+	<div id="page" class="hfeed site grid-container container grid-parent">
+		<div id="content" class="site-content">
+			
+	<div class="content-area grid-parent mobile-grid-100 grid-75 tablet-grid-75" id="primary">
+		<main class="site-main" id="main">
+			
+<article id="post-4473" class="post-4473 post type-post status-publish format-standard has-post-thumbnail hentry category-review category-toolbox" itemtype="https://schema.org/CreativeWork" itemscope>
+	<div class="inside-article">
+					<header class="entry-header" aria-label="Content">
+				<h1 class="entry-title" itemprop="headline">Nginx Fastcgi Cache, liệu có đáng dùng?</h1>		<div class="entry-meta">
+			<span class="posted-on"><i class="fa fa-calendar fa-1x" aria-hidden="true"></i> 20/05/2018 <i class="fa fa-refresh fa-1x fa-fw"></i> 02/04/2020 </span>		</div>
+					</header>
+			<div class="featured-image  page-header-image-single ">
+				<img data-perfmatters-preload width="800" height="400" src="/wp-content/uploads/2018/05/wordpress-nginx-fastcgi.png" class="attachment-full size-full" alt="wordpress-nginx-fastcgi" decoding="sync" itemprop="image" srcset="/wp-content/uploads/2018/05/wordpress-nginx-fastcgi.png 800w, /wp-content/uploads/2018/05/wordpress-nginx-fastcgi-300x150.png 300w, /wp-content/uploads/2018/05/wordpress-nginx-fastcgi-500x250.png 500w, /wp-content/uploads/2018/05/wordpress-nginx-fastcgi-725x363.png 725w, /wp-content/uploads/2018/05/wordpress-nginx-fastcgi-20x10.png 20w" sizes="(max-width: 800px) 100vw, 800px" loading="eager" fetchpriority="high">
+			</div>
+		<div class="entry-content" itemprop="text">
+			<p>Đứng ở góc độ cá nhân, mình thấy WP Rocket là plugin cache tuyệt vời nhất, đơn giản vì họ vẫn đang support sản phẩm cực kì tốt, nôm na là dùng WP Rocket bạn có thể tích hợp nó với rất, rất nhiều plugin khác mà không sợ lỗi, cá nhân dùng mình cũng rất hài lòng, nó có preload và xóa cache rất đúng ý, rất hiếm khi có lỗi</p>
+<p>Tuy thế, khi dùng qua Easyengine và Webinoly họ đều nói Nginx Fastcgi Cache là một hình thức cache tiên tiến ở tầng server, và đánh giá cực kì cao hình thức cache này, thật sự mình rất nể trình độ của người viết ra Easyengine và Webinoly, tuy thế mình không đồng tình với quan điểm này lắm, plugin hay gì cho cache, mục đích cuối vẫn là tăng khả năng chịu tải và tốc độ cho website, tuy thế không thể bỏ qua vấn đề tính năng và khả năng sử dụng, không thể chỉ vì cache mà bạn phải bỏ đi rất nhiều plugin khác đang dùng, lý do chỉ đơn giản vì nó sẽ không hoạt động được, chưa kể với các plugin cache mới hiện nay, phần nhiều họ viết load thẳng từ Nginx, không còn thông qua WordPress nữa, thành ra hiệu năng cũng rất tuyệt vời</p>
+<p>Nginx Fastcgi Cache khi mình dùng, thì nó bị tình trạng là không clear cache các widget, đơn giản nhất nếu bạn dùng widget để hiện các bài viết mới, các comment mới, thì khi có comment hay bài viết mới, thường nó sẽ … không hiện ra, vẫn dùng cache cũ :(( và phần sử dụng của nó thì ta nói, bạn phải ngồi đọc lại khá nhiều phần để có thể config theo đúng ý</p>
+<pre class="lang:default mark:12,16 decode:true "># WPFC NGINX CONFIGURATION
+# DO NOT MODIFY, ALL CHANGES LOST AFTER UPDATE Webinoly
+set $skip_cache 0;
+# POST requests and URL with a query string should always go to php
+if ($request_method = POST) {
+  set $skip_cache 1;
+}
+if ($query_string != "") {
+  set $skip_cache 1;
+}
+# Don't cache URL containing the following segments
+if ($request_uri ~* "(/wp-admin/|/xmlrpc.php|wp-.*.php|index.php|/feed/|sitemap(_index)?.xml|[a-z0-9_-]+-sitemap([0-9]+)?.xml)") {
+  set $skip_cache 1;
+}
+# Don't use the cache for logged in users or recent commenter or customer with items in cart
+if ($http_cookie ~* "comment_author|wordpress_[a-f0-9]+|wp-postpass|wordpress_no_cache|wordpress_logged_in|woocommerce_items_in_cart") {
+  set $skip_cache 1;
+}
+# Use cached or actual file if they exists, Otherwise pass request to WordPress
+location / {
+  try_files $uri $uri/ /index.php?$args;
+}
+location ~ \.php$ {
+  try_files $uri =404;
+  include fastcgi_params;
+  fastcgi_pass php;
+  fastcgi_cache_bypass $skip_cache;
+  fastcgi_no_cache $skip_cache;
+  fastcgi_cache WORDPRESS;
+}</pre>
+<p>Cơ bản thì file config chuẩn của Fastcgi đa phần như trên, muốn thêm gì thì thêm ở dòng 12 và 16, như đây họ đã để sẵn không cache phần wp-admin, member và phần giỏ hàng cho shop, cũng tương đối đủ dùng, thực tế mình đã phải bỏ phần đếm views của bài post khi dùng Nginx Fastcgi Cache, các widget mình đang chạy trên bibica.net cũng gần như không đổi nên mới chạy ổn </p>
+<p>Tuy khá khó config, bù lại hiệu năng của nó so với các plugin khác đúng là tuyệt, ở bài test <a href="https://loader.io/reports/ea0b7b199bef70ef9d83a2b55d12a573" target="_blank" rel="noopener">loader.io</a> nó pass nhẹ nhàng 1000 client mỗi phút mà chỉ có 1 ít lỗi nhỏ, thời gian load trung bình chỉ <span class="avg_response_time">2166</span> ms, CPU dùng chỉ ~ 50% (gói rẻ nhất của <a title="" href="/amazon-lightsail/" target="_blank" rel="noopener">Amazon Lightsail</a> Singapore, RAM 512 MB)</p>
+<p><a href="https://i2.wp.com/bibica.net/wp-content/uploads/2018/05/5-20-2018-12-16-56-pm.png?fit=898%2C661&amp;ssl=1"><img data-perfmatters-preload decoding="async" class="aligncenter size-full wp-image-4474" src="https://i2.wp.com/bibica.net/wp-content/uploads/2018/05/5-20-2018-12-16-56-pm.png?fit=898%2C661&amp;ssl=1" alt="" width="898" height="661" srcset="/wp-content/uploads/2018/05/5-20-2018-12-16-56-pm.png 898w, /wp-content/uploads/2018/05/5-20-2018-12-16-56-pm-300x221.png 300w, /wp-content/uploads/2018/05/5-20-2018-12-16-56-pm-500x368.png 500w, /wp-content/uploads/2018/05/5-20-2018-12-16-56-pm-725x534.png 725w" sizes="(max-width: 898px) 100vw, 898px"></a></p>
+<p>Nếu dùng plugin khác, thì thường CPU phải hú lên 100% và như bạn biết, khi CPU load 100% bạn vào trang sẽ vô cùng ỳ ạch, thật ra cũng chỉ test cho vui, thực tế site bạn nào có 1000 người online cùng lúc mà còn dùng mấy gói 512 MB thì khá bựa á  😀</p>
+<p>Và điểm cuối cùng có thể nhắc tới đơn giản là nó …. FREE 😀 bạn không phải tốn chi phí cho vấn đề cache </p>
+<p><a href="https://i2.wp.com/bibica.net/wp-content/uploads/2018/05/5-20-2018-12-39-18-pm.png?fit=1278%2C1530&amp;ssl=1"><img decoding="async" class="aligncenter size-full wp-image-4475" src="https://i2.wp.com/bibica.net/wp-content/uploads/2018/05/5-20-2018-12-39-18-pm.png?fit=1278%2C1530&amp;ssl=1" alt="" width="1278" height="1530" srcset="/wp-content/uploads/2018/05/5-20-2018-12-39-18-pm.png 1278w, /wp-content/uploads/2018/05/5-20-2018-12-39-18-pm-300x359.png 300w, /wp-content/uploads/2018/05/5-20-2018-12-39-18-pm-500x599.png 500w, /wp-content/uploads/2018/05/5-20-2018-12-39-18-pm-725x868.png 725w" sizes="(max-width: 1278px) 100vw, 1278px"></a></p>
+<p>Cấu hình trong WordPress thì bạn làm như hình là được 😀</p>
+<p><a href="https://i2.wp.com/bibica.net/wp-content/uploads/2018/05/5-20-2018-4-05-14-pm.png?fit=1324%2C460&amp;ssl=1"><img decoding="async" class="aligncenter size-full wp-image-4477" src="https://i2.wp.com/bibica.net/wp-content/uploads/2018/05/5-20-2018-4-05-14-pm.png?fit=1324%2C460&amp;ssl=1" alt="" width="1324" height="460" srcset="/wp-content/uploads/2018/05/5-20-2018-4-05-14-pm.png 1324w, /wp-content/uploads/2018/05/5-20-2018-4-05-14-pm-300x104.png 300w, /wp-content/uploads/2018/05/5-20-2018-4-05-14-pm-500x174.png 500w, /wp-content/uploads/2018/05/5-20-2018-4-05-14-pm-725x252.png 725w, /wp-content/uploads/2018/05/5-20-2018-4-05-14-pm-20x7.png 20w" sizes="(max-width: 1324px) 100vw, 1324px"></a></p>
+<p>Tốc độ khá ổn định khi truy cập từ khắp nơi trên thế giới 😀</p>
+<p><a href="https://i1.wp.com/bibica.net/wp-content/uploads/2018/05/5-20-2018-4-03-05-pm.png?fit=997%2C807&amp;ssl=1"><img decoding="async" class="aligncenter size-full wp-image-4478" src="https://i1.wp.com/bibica.net/wp-content/uploads/2018/05/5-20-2018-4-03-05-pm.png?fit=997%2C807&amp;ssl=1" alt="" width="997" height="807" srcset="/wp-content/uploads/2018/05/5-20-2018-4-03-05-pm.png 997w, /wp-content/uploads/2018/05/5-20-2018-4-03-05-pm-300x243.png 300w, /wp-content/uploads/2018/05/5-20-2018-4-03-05-pm-500x405.png 500w, /wp-content/uploads/2018/05/5-20-2018-4-03-05-pm-725x587.png 725w, /wp-content/uploads/2018/05/5-20-2018-4-03-05-pm-20x16.png 20w" sizes="(max-width: 997px) 100vw, 997px"></a></p>
+<p>Thật sự thì mình không khuyến khích dùng Nginx Fastcgi Cache, đơn giản vì nó quá khó để tùy biến và sử dụng, mình cũng chỉ dùng nó trên bibica.net, một trang mà gần như đã tắt sạch các plugin và các widget liên quan, nếu bạn thích cache, mình vẫn khuyên dùng <a href="/wp-rocket-va-rocket-nginx/" target="_blank" rel="noopener">WP Rocket và Rocket-Nginx</a>, nó dễ sử dụng, tính năng mạnh và hiệu năng cũng rất tuyệt vời</p>
+<div class="rp4wp-related-posts">
+<h3>Related Posts</h3>
+<ul>
+<li>
+<div class="rp4wp-related-post-image">
+<a href="/cache-enabler/"><img width="128" height="58" src="/wp-content/uploads/2018/12/2018-12-08_0-35-07-300x137.png" class="attachment-thumbnail size-thumbnail wp-post-image" alt="2018-12-08_0-35-07" decoding="sync" loading="eager" srcset="/wp-content/uploads/2018/12/2018-12-08_0-35-07-300x137.png 300w, /wp-content/uploads/2018/12/2018-12-08_0-35-07-500x228.png 500w, /wp-content/uploads/2018/12/2018-12-08_0-35-07-725x331.png 725w, /wp-content/uploads/2018/12/2018-12-08_0-35-07.png 959w" sizes="(max-width: 128px) 100vw, 128px" fetchpriority="high"></a>
+</div>
+<div class="rp4wp-related-post-content">
+<a href="/cache-enabler/">Cache Enabler</a><p>Cache Enabler là một hình thức cache đơn giản, và tính năng của nó gần…</p>
+</div>
+</li>
+<li>
+<div class="rp4wp-related-post-image">
+<a href="/fv-gravatar-cache/"><img width="113" height="96" src="/wp-content/uploads/2018/12/2018-12-16_12-05-18-300x256.png" class="attachment-thumbnail size-thumbnail wp-post-image" alt="FV Gravatar Cache" decoding="async" loading="lazy" srcset="/wp-content/uploads/2018/12/2018-12-16_12-05-18-300x256.png 300w, /wp-content/uploads/2018/12/2018-12-16_12-05-18-500x427.png 500w, /wp-content/uploads/2018/12/2018-12-16_12-05-18-725x620.png 725w, /wp-content/uploads/2018/12/2018-12-16_12-05-18-20x17.png 20w, /wp-content/uploads/2018/12/2018-12-16_12-05-18.png 969w" sizes="(max-width: 113px) 100vw, 113px"></a>
+</div>
+<div class="rp4wp-related-post-content">
+<a href="/fv-gravatar-cache/">FV Gravatar Cache</a><p>FV Gravatar Cache là một plugin giúp tạo cache cho các avatar từ Gravatar, hiện ra…</p>
+</div>
+</li>
+<li>
+<div class="rp4wp-related-post-image">
+<a href="/xoa-cache-cloudflare-tu-slickstack/"><img width="128" height="50" src="/wp-content/uploads/2022/11/2022-11-22-11-53-04.png" class="attachment-thumbnail size-thumbnail wp-post-image" alt="2022-11-22_11-53-04" decoding="async" loading="lazy" srcset="/wp-content/uploads/2022/11/2022-11-22-11-53-04.png 1755w, /wp-content/uploads/2022/11/2022-11-22-11-53-04-1536x605.png 1536w" sizes="(max-width: 128px) 100vw, 128px"></a>
+</div>
+<div class="rp4wp-related-post-content">
+<a href="/xoa-cache-cloudflare-tu-slickstack/">Xóa cache CloudFlare từ SlickStack</a><p>CloudFlare là 1 addon nhỏ của bộ cài đặt SlickStack, tác giả tách nhỏ ra…</p>
+</div>
+</li>
+<li>
+<div class="rp4wp-related-post-image">
+<a href="/flyingpress-plugin-cache-hang-dau/"><img width="128" height="47" src="/wp-content/uploads/2022/11/2022-11-12-22-22-23.png" class="attachment-thumbnail size-thumbnail wp-post-image" alt="2022-11-12_22-22-23" decoding="async" loading="lazy"></a>
+</div>
+<div class="rp4wp-related-post-content">
+<a href="/flyingpress-plugin-cache-hang-dau/">FlyingPress - plugin cache hàng đầu</a><p>Qua cập nhập 1 số update hệ thống cho thèng bibica.net, tiện mồm check lại…</p>
+</div>
+</li>
+<li>
+<div class="rp4wp-related-post-image">
+<a href="/ngung-su-dung-cac-dich-vu-tu-vultr/"><img width="128" height="93" src="/wp-content/uploads/2018/05/5-5-2018-3-21-24-pm-300x217.png" class="attachment-thumbnail size-thumbnail wp-post-image" alt="5-5-2018 3-21-24 PM" decoding="async" loading="lazy" srcset="/wp-content/uploads/2018/05/5-5-2018-3-21-24-pm-300x217.png 300w, /wp-content/uploads/2018/05/5-5-2018-3-21-24-pm-500x361.png 500w, /wp-content/uploads/2018/05/5-5-2018-3-21-24-pm-725x523.png 725w, /wp-content/uploads/2018/05/5-5-2018-3-21-24-pm-20x14.png 20w, /wp-content/uploads/2018/05/5-5-2018-3-21-24-pm.png 1003w" sizes="(max-width: 128px) 100vw, 128px"></a>
+</div>
+<div class="rp4wp-related-post-content">
+<a href="/ngung-su-dung-cac-dich-vu-tu-vultr/">Ngừng sử dụng các dịch vụ từ Vultr</a><p>Trước đây, mình từng có một bài viết quảng cáo cho dịch vụ của Vultr,…</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="et_bloom_below_post"><div class="et_bloom_inline_form et_bloom_optin et_bloom_make_form_visible et_bloom_optin_1" style="display: none;" data-success_action_details="redirect_url|http://localhost/bibica.net/thank-you-for-subscribing/">
+				
+				<div class="et_bloom_form_container  et_bloom_rounded_corners et_bloom_rounded et_bloom_form_text_dark et_bloom_form_bottom et_bloom_inline_2_fields et_bloom_success_action">
+					
+			<div class="et_bloom_form_container_wrapper clearfix">
+				<div class="et_bloom_header_outer">
+					<div class="et_bloom_form_header split et_bloom_header_text_light">
+						<img src="https://res.cloudinary.com/ngoirungdui/image/upload/f_auto,fl_lossy,q_auto:eco,dpr_auto,w_auto/f_auto,fl_lossy,q_auto:eco,dpr_auto,w_auto/c_scale,w_100/v1514814214/logo_email_jmg9yz.png" alt="Get the next article in your inbox" class=" et_bloom_image_no_animation et_bloom_image">
+						<div class="et_bloom_form_text">
+						<h4 class="title" style="border: 0px; margin: 0px; padding: 0px; font-family: 'Work Sans', sans-serif; font-size: 22px; font-weight: inherit; line-height: 1; text-transform: uppercase; color: #ffffff;">Get the next article in your inbox</h4>
+<p><span style="color: #ffffff;">WordPress, Theme, Plugin, Speed, Optimization, Tips, Trick &amp; Reviews, <span style="text-decoration: underline;"><em><strong>once a week</strong></em></span></span></p>
+					</div>
+						
+					</div>
+				</div>
+				<div class="et_bloom_form_content et_bloom_2_fields et_bloom_bottom_inline">
+					
+					
+					<form method="post" class="clearfix">
+						<div class="et_bloom_fields">
+							<p class="et_bloom_popup_input et_bloom_subscribe_name">
+								<input placeholder="Name" maxlength="50">
+							</p>
+							<p class="et_bloom_popup_input et_bloom_subscribe_email">
+								<input placeholder="Email">
+							</p>
+							
+							<button data-optin_id="optin_1" data-service="mailchimp" data-list_id="475980b14d" data-page_id="4473" data-account="bibicadotreview" data-ip_address="false" class="et_bloom_submit_subscription">
+								<span class="et_bloom_subscribe_loader"></span>
+								<span class="et_bloom_button_text et_bloom_button_text_color_light">JOIN US</span>
+							</button>
+						</div>
+					</form>
+					<div class="et_bloom_success_container">
+						<span class="et_bloom_success_checkmark"></span>
+					</div>
+					<h2 class="et_bloom_success_message">You have Successfully Subscribed!</h2>
+					<div class="et_bloom_form_footer">We respect your privacy and take protecting it seriously, we hate spam, unsubscribe at any time.</div>
+				</div>
+			</div>
+			<span class="et_bloom_close_button"></span>
+				</div>
+			</div></div>		</div>
+
+				<footer class="entry-meta" aria-label="Entry meta">
+			<span class="cat-links"><span class="screen-reader-text">Categories </span><a href="/category/review/" rel="category tag">Review</a>, <a href="/category/toolbox/" rel="category tag">Toolbox</a></span> 		<nav id="nav-below" class="post-navigation" aria-label="Posts">
+			<div class="nav-previous"><span class="prev"><a href="/share-windscribe-vpn-lifetime-pro/" rel="prev">[SHARE] Windscribe VPN: Lifetime Pro</a></span></div>
+<div class="nav-next"><span class="next"><a href="/aws-gift-card/" rel="next">AWS Gift Card</a></span></div>		</nav>
+				</footer>
+			</div>
+</article>
+
+			<div class="comments-area">
+				<div id="comments">
+
+	<h3 class="comments-title">11 thoughts on “Nginx Fastcgi Cache, liệu có đáng dùng?”</h3>
+		<ol class="comment-list">
+			
+		<li id="comment-892" class="comment even thread-even depth-1 parent">
+			<article class="comment-body" id="div-comment-892" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta" aria-label="Comment meta">
+					<img alt="" src="/wp-content/uploads/fv-gravatar-cache/mystery96.png" srcset="/wp-content/uploads/fv-gravatar-cache/mystery192.png 2x" class="avatar avatar-50 photo" height="50" width="50" decoding="async">					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn">Nguyễn Mạnh Hùng</cite>						</div>
+
+													<div class="entry-meta comment-metadata">
+								<a href="/nginx-fastcgi-cache-lieu-co-dang-dung/#comment-892">									<time datetime="2020-01-06T00:32:59+07:00" itemprop="datePublished">
+										06/01/2020 at 00:32									</time>
+								</a>							</div>
+												</div>
+
+									</footer>
+
+				<div class="comment-content" itemprop="text">
+					<p>Mình sử dụng các dịch vụ bạn giới thiệu như Upcloud + Ubuntu 18.04 + Webinoly + Wp-rocket + Rocket-nginx.  Sử dụng cho 2 site. Đều cho điểm số khá tốt toàn 9x và điểm A. Nhưng mình restart và kiểm tra nginx -t. Nó ra cảnh báo như vầy:<br>
+nginx: [warn] could not build optimal fastcgi_params_hash, you should increase either fastcgi_params_hash_max_size: 512 or fastcgi_params_hash_bucket_size: 64; ignoring fastcgi_params_hash_bucket_size<br>
+nginx: [warn] could not build optimal fastcgi_params_hash, you should increase either fastcgi_params_hash_max_size: 512 or fastcgi_params_hash_bucket_size: 64; ignoring fastcgi_params_hash_bucket_size<br>
+nginx: [warn] could not build optimal fastcgi_params_hash, you should increase either fastcgi_params_hash_max_size: 512 or fastcgi_params_hash_bucket_size: 64; ignoring fastcgi_params_hash_bucket_size<br>
+Mình làm thế nào cho nó hết cảnh báo như vậy.</p>
+<span class="reply"><a rel="nofollow" class="comment-reply-link" href="/nginx-fastcgi-cache-lieu-co-dang-dung/?replytocom=892#respond" data-commentid="892" data-postid="4473" data-belowelement="div-comment-892" data-respondelement="respond" data-replyto="Reply to Nguyễn Mạnh Hùng" aria-label="Reply to Nguyễn Mạnh Hùng">Reply</a></span>				</div>
+			</article>
+			<ul class="children">
+
+		<li id="comment-893" class="comment byuser comment-author-bibica bypostauthor odd alt depth-2 parent">
+			<article class="comment-body" id="div-comment-893" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta" aria-label="Comment meta">
+					<img alt="" src="/wp-content/uploads/fv-gravatar-cache/cf204c301a46f1b6bc57ffdb8f82977ex96.png" srcset="/wp-content/uploads/fv-gravatar-cache/cf204c301a46f1b6bc57ffdb8f82977ex192.png 2x" class="avatar avatar-50 photo" height="50" width="50" decoding="async">					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn">bibica</cite>						</div>
+
+													<div class="entry-meta comment-metadata">
+								<a href="/nginx-fastcgi-cache-lieu-co-dang-dung/#comment-893">									<time datetime="2020-01-06T12:38:52+07:00" itemprop="datePublished">
+										06/01/2020 at 12:38									</time>
+								</a>							</div>
+												</div>
+
+									</footer>
+
+				<div class="comment-content" itemprop="text">
+					<p>Trong mặc định cài đặt của Webinoly thường rất ít có lỗi gì liên quan tới nginx (là liên quan tới hệ thống) như thế, cài Rocket-nginx vào thì nó thêm 1 dòng code trong file config, thử bỏ dòng đó đi, rồi restart thử lại xem thế nào 😀 hoặc muốn nhanh nhất thì liên hệ thẳng phần support của Webinoly, tác giả và cộng đồng sẽ hỗ trợ bạn 😀 mình thì gần nửa năm nay không đụng gì tới code nên quên ráo rồi 😀 tới cái info VPS cho mấy trang như bibica.net, bữa mình cài lại máy, xóa luôn mà chưa có thời gian để lấy lại á :]]</p>
+<p>Về combo đơn giản và hiệu quả nhất thì Ubuntu 18.04 + Webinoly + Wp-rocket là đủ, nó có thể phù hợp tới 99% các nhu cầu, Rocket-nginx thì nó cũng chỉ là một môi trường ảo, đa phần mình cũng dùng để chạy test xem hiệu năng tới cỡ nào, chứ thực tế thuần Wp Rocket nó cũng chịu tải rất tốt rồi 😛</p>
+<p>Mình còn chẳng dùng cả WP Rocket, mình dùng sản phẩm miễn phí của KeyCDN là Cache Enabler, và cũng chẳng có gì phàn nàn 😛</p>
+<p>Tầm nữa năm nay mình khá ít viết gì hay cập nhập lại bài viết, chủ yếu lượng kiến thức mới nó cũng xoay quanh thế cả, gần như đọc hiểu hết bài “Tăng Tốc, Tối Ưu Hóa Cho WordPress” là đủ (http://localhost/bibica.net/tang-toc-toi-uu-hoa-cho-wordpress/)</p>
+<p>Cũng có nhiều công nghệ, giải pháp khác …. tuy thế hiệu năng, thường nó chỉ tính theo ms, kiểu 0.001s, thành ra nó cũng chẳng có nhiều ý nghĩa về thực tế</p>
+<p>Mà từ ngày Cloudflare họ có hỗ trợ cache server Việt Nam, thì mình cũng gần như không còn đụng chạm gì tới khoản tối ưu này nọ nữa rồi, giải pháp của Cloudflare quá sức triệt để 😀</p>
+<span class="reply"><a rel="nofollow" class="comment-reply-link" href="/nginx-fastcgi-cache-lieu-co-dang-dung/?replytocom=893#respond" data-commentid="893" data-postid="4473" data-belowelement="div-comment-893" data-respondelement="respond" data-replyto="Reply to bibica" aria-label="Reply to bibica">Reply</a></span>				</div>
+			</article>
+			<ul class="children">
+
+		<li id="comment-894" class="comment even depth-3 parent">
+			<article class="comment-body" id="div-comment-894" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta" aria-label="Comment meta">
+					<img alt="" src="/wp-content/uploads/fv-gravatar-cache/mystery96.png" srcset="/wp-content/uploads/fv-gravatar-cache/mystery192.png 2x" class="avatar avatar-50 photo" height="50" width="50" decoding="async">					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn">Nguyễn Mạnh Hùng</cite>						</div>
+
+													<div class="entry-meta comment-metadata">
+								<a href="/nginx-fastcgi-cache-lieu-co-dang-dung/#comment-894">									<time datetime="2020-01-06T23:11:20+07:00" itemprop="datePublished">
+										06/01/2020 at 23:11									</time>
+								</a>							</div>
+												</div>
+
+									</footer>
+
+				<div class="comment-content" itemprop="text">
+					<p>Mình xài combo đó mấy cái site nó chỉ số toàn A 9x trở lên khá tốt. Nhưng bị cái lỗi đó khó chịu. Remove luôn fastcgi không biết được không?<br>
+Công nhận làm mấy cái server này liên tục còn nhớ. Bỏ làm chừng vài tháng là quên hết cho dù toàn xài tools không có cần nhớ mấy câu lệnh nhiều.<br>
+Hồi trước tôi cũng xài cloudflare mà thấy nó hay bị lỗi nên nghỉ chơi cloudflare. Chơi với bunnycdn cho site tiếng anh. Site tiếng việt đang xài vccloud cdn. Không biết giờ cloudflare có server VN thì ngon hơn xưa và hết lỗi không.</p>
+<span class="reply"><a rel="nofollow" class="comment-reply-link" href="/nginx-fastcgi-cache-lieu-co-dang-dung/?replytocom=894#respond" data-commentid="894" data-postid="4473" data-belowelement="div-comment-894" data-respondelement="respond" data-replyto="Reply to Nguyễn Mạnh Hùng" aria-label="Reply to Nguyễn Mạnh Hùng">Reply</a></span>				</div>
+			</article>
+			<ul class="children">
+
+		<li id="comment-895" class="comment byuser comment-author-bibica bypostauthor odd alt depth-4">
+			<article class="comment-body" id="div-comment-895" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta" aria-label="Comment meta">
+					<img alt="" src="/wp-content/uploads/fv-gravatar-cache/cf204c301a46f1b6bc57ffdb8f82977ex96.png" srcset="/wp-content/uploads/fv-gravatar-cache/cf204c301a46f1b6bc57ffdb8f82977ex192.png 2x" class="avatar avatar-50 photo" height="50" width="50" decoding="async">					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn">bibica</cite>						</div>
+
+													<div class="entry-meta comment-metadata">
+								<a href="/nginx-fastcgi-cache-lieu-co-dang-dung/#comment-895">									<time datetime="2020-01-07T02:31:33+07:00" itemprop="datePublished">
+										07/01/2020 at 02:31									</time>
+								</a>							</div>
+												</div>
+
+									</footer>
+
+				<div class="comment-content" itemprop="text">
+					<p>Thông báo đó do người dùng config thêm gì vào gây ra thôi, cụ thể cứ tạo 1 trang mới hoàn toàn xem có lỗi đó không thì biết ngay mà 😀</p>
+<p>Mà theo như nói nãy giờ, nếu chỉ thêm Rocket-nginx ở phía server, thì thử bỏ dòng config đó ra xem còn thông báo đó không thì biết mà?</p>
+<p>Về điểm số thì thật ra nó cũng có giá trị tham khảo cho vui ở thời internet vừa có thôi 😀 còn giờ trình duyệt chạy http2 cả rồi thì các kiến thức đó nó vô giá trị cả 😀 chung quy ông đừng chạy quá sai là được, kiểu cái ảnh thumbnail bé xíu, lại đi dùng cái ảnh gốc nặng 2-3MB để load ra thì hơi hãm 😀 còn lại sai bình thường thì cũng chẳng đáng kể</p>
+<p>Ý về Cloudflare thì nói nhanh là không dịch vụ CDN nào có tuổi đi so được với Cloudflare hết, chủ yếu khác biệt là do cách nó vận hành, kiểu CDN, thì cũng phải vào trang chủ, vào trang chủ xong mới load các request tĩnh từ CDN về, trong trường hợp trang chủ host ở xa vị trí truy cập, thường vẫn sẽ …. chậm</p>
+<p>Cụ thể nhất có thể nhìn vào thèng …. bibica.net cũng được 😀 thực tế nó đang dùng hosting tại US, mà truy cập từ VN tới cũng chỉ loanh quanh ~1s 😀</p>
+<p>Nói chung cơ bản như tôi nói từ đầu ấy, cài Webinoly vào, để mặc định là xong, phía server gần như không cần phải sửa cái gì, trừ kiểu cài vài plugin khác vào, nó cần đổi ít thông số thì sửa, còn lại cứ để mặc định mà chạy là thừa nhanh và ổn định rồi, cá nhân tôi cũng chỉ chỉnh lại vài dòng ở cấu hình để thêm quyền cho vài plugin blackup là chính</p>
+<p>Và nói tới đây phải nói tới tác giả của Centmin Mod ấy, phần config cấu hình server, hắn sửa kinh hoàng, nhanh thêm 0.001s và chạy không lỗi gì, hắn vẫn không chê và thêm vào 😀 thực tế khi dùng Centmin Mod tôi cũng có thử 1 vài config khác, nhưng chung quy đều …. thua xa setting mặc định tác giả để sẵn :]]</p>
+<span class="reply"><a rel="nofollow" class="comment-reply-link" href="/nginx-fastcgi-cache-lieu-co-dang-dung/?replytocom=895#respond" data-commentid="895" data-postid="4473" data-belowelement="div-comment-895" data-respondelement="respond" data-replyto="Reply to bibica" aria-label="Reply to bibica">Reply</a></span>				</div>
+			</article>
+			</li>
+<!-- #comment-## -->
+</ul>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+</ul>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+</ul>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+
+		<li id="comment-688" class="comment even thread-odd thread-alt depth-1">
+			<article class="comment-body" id="div-comment-688" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta" aria-label="Comment meta">
+					<img alt="" src="/wp-content/uploads/fv-gravatar-cache/mystery96.png" srcset="/wp-content/uploads/fv-gravatar-cache/mystery192.png 2x" class="avatar avatar-50 photo" height="50" width="50" decoding="async">					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn">poros</cite>						</div>
+
+													<div class="entry-meta comment-metadata">
+								<a href="/nginx-fastcgi-cache-lieu-co-dang-dung/#comment-688">									<time datetime="2019-03-30T22:02:30+07:00" itemprop="datePublished">
+										30/03/2019 at 22:02									</time>
+								</a>							</div>
+												</div>
+
+									</footer>
+
+				<div class="comment-content" itemprop="text">
+					<p>Nguyễn Minh Hùng trước tôi dùng Redis cũng méo biết clear cache thế nào toàn phải vào VSP gõ “Rediscli flushall” mỗi khi sửa đổi mới nhục :)) xong sau mới biết là phải cài nginx helper :))</p>
+<span class="reply"><a rel="nofollow" class="comment-reply-link" href="/nginx-fastcgi-cache-lieu-co-dang-dung/?replytocom=688#respond" data-commentid="688" data-postid="4473" data-belowelement="div-comment-688" data-respondelement="respond" data-replyto="Reply to poros" aria-label="Reply to poros">Reply</a></span>				</div>
+			</article>
+			</li>
+<!-- #comment-## -->
+
+		<li id="comment-687" class="comment odd alt thread-even depth-1 parent">
+			<article class="comment-body" id="div-comment-687" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta" aria-label="Comment meta">
+					<img alt="" src="/wp-content/uploads/fv-gravatar-cache/mystery96.png" srcset="/wp-content/uploads/fv-gravatar-cache/mystery192.png 2x" class="avatar avatar-50 photo" height="50" width="50" decoding="async">					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn">Poros</cite>						</div>
+
+													<div class="entry-meta comment-metadata">
+								<a href="/nginx-fastcgi-cache-lieu-co-dang-dung/#comment-687">									<time datetime="2019-03-30T21:57:51+07:00" itemprop="datePublished">
+										30/03/2019 at 21:57									</time>
+								</a>							</div>
+												</div>
+
+									</footer>
+
+				<div class="comment-content" itemprop="text">
+					<p>Trang mình wordpress (không cài plugin cache) chỉ dùng redis + nginx helper, real time 5k CPU vẫn có 35% tất nhiên là không không cache qua Cloudflare vì chả cần thiết vì redis nó cache hết rồi. Nhưng phải công nhận Redis nó phức tạp, nhiều cái oái ăm. Mỗi lần sửa post 1 là phải nhét post đó vào nginx helper để nó clear cache 2 là purge all (nếu lười) &gt;__&lt;</p>
+<span class="reply"><a rel="nofollow" class="comment-reply-link" href="/nginx-fastcgi-cache-lieu-co-dang-dung/?replytocom=687#respond" data-commentid="687" data-postid="4473" data-belowelement="div-comment-687" data-respondelement="respond" data-replyto="Reply to Poros" aria-label="Reply to Poros">Reply</a></span>				</div>
+			</article>
+			<ul class="children">
+
+		<li id="comment-690" class="comment byuser comment-author-bibica bypostauthor even depth-2">
+			<article class="comment-body" id="div-comment-690" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta" aria-label="Comment meta">
+					<img alt="" src="/wp-content/uploads/fv-gravatar-cache/cf204c301a46f1b6bc57ffdb8f82977ex96.png" srcset="/wp-content/uploads/fv-gravatar-cache/cf204c301a46f1b6bc57ffdb8f82977ex192.png 2x" class="avatar avatar-50 photo" height="50" width="50" decoding="async">					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn">bibica</cite>						</div>
+
+													<div class="entry-meta comment-metadata">
+								<a href="/nginx-fastcgi-cache-lieu-co-dang-dung/#comment-690">									<time datetime="2019-03-30T22:44:36+07:00" itemprop="datePublished">
+										30/03/2019 at 22:44									</time>
+								</a>							</div>
+												</div>
+
+									</footer>
+
+				<div class="comment-content" itemprop="text">
+					<p>Cái real time 5k là info từ đâu 😀 Google Analytics à, thường thì 1 core CPU nó hú lên tầm 3k client 1s là ngáp ngáp cả rồi, cụ thể thì cứ chạy loader.io vài vòng là có kết quả 😀</p>
+<p>Nói chung cache bằng redis mà hiệu quả thì người ta đã dùng cả rồi 😀</p>
+<span class="reply"><a rel="nofollow" class="comment-reply-link" href="/nginx-fastcgi-cache-lieu-co-dang-dung/?replytocom=690#respond" data-commentid="690" data-postid="4473" data-belowelement="div-comment-690" data-respondelement="respond" data-replyto="Reply to bibica" aria-label="Reply to bibica">Reply</a></span>				</div>
+			</article>
+			</li>
+<!-- #comment-## -->
+</ul>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+
+		<li id="comment-643" class="comment odd alt thread-odd thread-alt depth-1 parent">
+			<article class="comment-body" id="div-comment-643" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta" aria-label="Comment meta">
+					<img alt="" src="/wp-content/uploads/fv-gravatar-cache/mystery96.png" srcset="/wp-content/uploads/fv-gravatar-cache/mystery192.png 2x" class="avatar avatar-50 photo" height="50" width="50" decoding="async">					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn">Khải Trần</cite>						</div>
+
+													<div class="entry-meta comment-metadata">
+								<a href="/nginx-fastcgi-cache-lieu-co-dang-dung/#comment-643">									<time datetime="2019-03-21T23:32:59+07:00" itemprop="datePublished">
+										21/03/2019 at 23:32									</time>
+								</a>							</div>
+												</div>
+
+									</footer>
+
+				<div class="comment-content" itemprop="text">
+					<p>Hay quá ad ơi, lại dễ hiểu nữa!<br>
+Tiện thể làm luôn bài viết về Redis cache đi ad, hj<br>
+Chúc ad sức khỏe để ra nhiều thêm các bài viết chất lượng!</p>
+<span class="reply"><a rel="nofollow" class="comment-reply-link" href="/nginx-fastcgi-cache-lieu-co-dang-dung/?replytocom=643#respond" data-commentid="643" data-postid="4473" data-belowelement="div-comment-643" data-respondelement="respond" data-replyto="Reply to Khải Trần" aria-label="Reply to Khải Trần">Reply</a></span>				</div>
+			</article>
+			<ul class="children">
+
+		<li id="comment-644" class="comment byuser comment-author-bibica bypostauthor even depth-2">
+			<article class="comment-body" id="div-comment-644" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta" aria-label="Comment meta">
+					<img alt="" src="/wp-content/uploads/fv-gravatar-cache/cf204c301a46f1b6bc57ffdb8f82977ex96.png" srcset="/wp-content/uploads/fv-gravatar-cache/cf204c301a46f1b6bc57ffdb8f82977ex192.png 2x" class="avatar avatar-50 photo" height="50" width="50" decoding="async">					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn">bibica</cite>						</div>
+
+													<div class="entry-meta comment-metadata">
+								<a href="/nginx-fastcgi-cache-lieu-co-dang-dung/#comment-644">									<time datetime="2019-03-22T05:25:05+07:00" itemprop="datePublished">
+										22/03/2019 at 05:25									</time>
+								</a>							</div>
+												</div>
+
+									</footer>
+
+				<div class="comment-content" itemprop="text">
+					<p>Redis cache nói cho dễ hiểu là các thông tin từ database đưa ra, nó sẽ cache, như các wiget hiện ra, cụ thể như thèng bibica.net là phần “Featured Posts” ở bên phải trang chẳng hạn, hay như các comment mới ….</p>
+<p>Tổng thể thì wordpress nặng nhất là việc lấy các data từ database ra, dùng Redis cache thì nó sẽ tự lôi các thông tin này ra từ ram, lý thuyết là nhanh và nhẹ</p>
+<p>Mỗi cái là nó “vô cùng khó” xử lý, ví dụ như bạn edit bài viết, cụ thể như bài “Cloud VPS UpCloud – Đã hỗ trợ thanh toán Paypal” nằm ở phần “Featured Posts”, bạn đổi nó thành “Cloud VPS UpCloud” thì khi ấn SAVE, bài viết của bạn nó hiểu và nó sửa lại, nhưng ở các phần khác thì nó không xóa cache, vẫn cứ lôi cache cũ ra dùng lại </p>
+<p>Nó chồng chéo và dễ sai lên rất nhiều, không phải ngẫu nhiên mà người ta nói cache thành file html và lưu trên ổ cứng là đơn giản và hiệu quả nhất 😀 </p>
+<p>Thực tế mình vẫn chỉ recommend WP Rocket và Rocket-Nginx để cache trên WordPress thôi 😀</p>
+<p>Còn nếu bạn thích cái cảm giác xé gió bất kể truy cập từ mọi nơi trên thế giới thì cứ thử SuperSonic trên Cloudflare là được (http://localhost/bibica.net/supersonic-va-cloudflare-ttfb-3x-ms/)</p>
+<p>Cân tất cả mọi thể loại cache, 10.000 client mỗi giây vẫn … chiến hết nhá :]]</p>
+<span class="reply"><a rel="nofollow" class="comment-reply-link" href="/nginx-fastcgi-cache-lieu-co-dang-dung/?replytocom=644#respond" data-commentid="644" data-postid="4473" data-belowelement="div-comment-644" data-respondelement="respond" data-replyto="Reply to bibica" aria-label="Reply to bibica">Reply</a></span>				</div>
+			</article>
+			</li>
+<!-- #comment-## -->
+</ul>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+
+		<li id="comment-487" class="comment odd alt thread-even depth-1 parent">
+			<article class="comment-body" id="div-comment-487" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta" aria-label="Comment meta">
+					<img alt="" src="/wp-content/uploads/fv-gravatar-cache/e23cb1cadfffdecb8de3ba2498237413x96.png" srcset="/wp-content/uploads/fv-gravatar-cache/e23cb1cadfffdecb8de3ba2498237413x192.png 2x" class="avatar avatar-50 photo" height="50" width="50" decoding="async">					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn">Nguyễn Minh Hùng</cite>						</div>
+
+													<div class="entry-meta comment-metadata">
+								<a href="/nginx-fastcgi-cache-lieu-co-dang-dung/#comment-487">									<time datetime="2018-12-02T09:50:54+07:00" itemprop="datePublished">
+										02/12/2018 at 09:50									</time>
+								</a>							</div>
+												</div>
+
+									</footer>
+
+				<div class="comment-content" itemprop="text">
+					<p>cái Nginx Fastcgi Cache nó kinh khủng bố đến nổi đổi theme rồi mà mọi trình duyệt mới vẫn không nhận theme mới luôn @@.<br>
+Phải dùng kèm Nginx Helper plugin để purge cache chứ không là ngu người.</p>
+<span class="reply"><a rel="nofollow" class="comment-reply-link" href="/nginx-fastcgi-cache-lieu-co-dang-dung/?replytocom=487#respond" data-commentid="487" data-postid="4473" data-belowelement="div-comment-487" data-respondelement="respond" data-replyto="Reply to Nguyễn Minh Hùng" aria-label="Reply to Nguyễn Minh Hùng">Reply</a></span>				</div>
+			</article>
+			<ul class="children">
+
+		<li id="comment-488" class="comment byuser comment-author-bibica bypostauthor even depth-2">
+			<article class="comment-body" id="div-comment-488" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta" aria-label="Comment meta">
+					<img alt="" src="/wp-content/uploads/fv-gravatar-cache/cf204c301a46f1b6bc57ffdb8f82977ex96.png" srcset="/wp-content/uploads/fv-gravatar-cache/cf204c301a46f1b6bc57ffdb8f82977ex192.png 2x" class="avatar avatar-50 photo" height="50" width="50" decoding="async">					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn">bibica</cite>						</div>
+
+													<div class="entry-meta comment-metadata">
+								<a href="/nginx-fastcgi-cache-lieu-co-dang-dung/#comment-488">									<time datetime="2018-12-02T11:23:41+07:00" itemprop="datePublished">
+										02/12/2018 at 11:23									</time>
+								</a>							</div>
+												</div>
+
+									</footer>
+
+				<div class="comment-content" itemprop="text">
+					<p>Mặc định khi cài Nginx Fastcgi Cache vào là họ từ cài Nginx Helper vào rồi mà 😀</p>
+<p>Chủ yếu mục đích Nginx Fastcgi Cache sinh ra là để cache, tăng độ trâu chó chịu tải của site, chứ nó không đi hướng dễ sử dụng, nên cũng chỉ các site tĩnh, kiểu thèng bibica.net, không dùng shop, không chạy các thứ thay đổi nhiều thông tin, còn bạn nào show kiểu bài viết, comment, đếm số lượt đọc bài post …. là Nginx Fastcgi Cache gần như không dùng được</p>
+<p>Tổng thể cache mình vẫn recommend dùng WP Rocket và Rocket-Nginx, hiểu quả và tùy biến cao, chạy ổn định và có precache 😀</p>
+<span class="reply"><a rel="nofollow" class="comment-reply-link" href="/nginx-fastcgi-cache-lieu-co-dang-dung/?replytocom=488#respond" data-commentid="488" data-postid="4473" data-belowelement="div-comment-488" data-respondelement="respond" data-replyto="Reply to bibica" aria-label="Reply to bibica">Reply</a></span>				</div>
+			</article>
+			</li>
+<!-- #comment-## -->
+</ul>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+		</ol>
+<!-- .comment-list -->
+
+			<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="/nginx-fastcgi-cache-lieu-co-dang-dung/#respond" style="display:none;">Cancel reply</a></small>
+</h3>
+<form action="http://localhost/bibica.net/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate>
+<p class="comment-form-comment"><label for="comment" class="screen-reader-text">Comment</label><textarea id="comment" name="comment" cols="45" rows="8" required></textarea></p>
+<label for="author" class="screen-reader-text">Name</label><input placeholder="Name *" id="author" name="author" type="text" value="" size="30" required>
+<label for="email" class="screen-reader-text">Email</label><input placeholder="Email *" id="email" name="email" type="email" value="" size="30" required>
+<p class="comment-form-subscriptions"><label for="subscribe-reloaded"><input style="width:30px" type="checkbox" name="subscribe-reloaded" id="subscribe-reloaded" value="yes" checked> Notify me of followup comments via e-mail.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="4473" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p>
+</form>	</div>
+<!-- #respond -->
+	
+</div>
+<!-- #comments -->
+			</div>
+
+					</main>
+	</div>
+
+	<div class="widget-area sidebar is-right-sidebar grid-25 tablet-grid-25 grid-parent" id="right-sidebar">
+	<div class="inside-right-sidebar">
+		<aside id="dpe_fp_widget-11" class="widget inner-padding widget_dpe_fp_widget"><h2 class="widget-title">Featured Posts</h2>	<ul class="dpe-flexible-posts">
+			<li id="post-849" class="post-849 post type-post status-publish format-standard has-post-thumbnail hentry category-review">
+			<a href="/webinoly-mot-su-thay-hoan-hao-cho-easyengine/">
+				<img width="500" height="179" src="/wp-content/uploads/2017/12/12-7-2017-6-38-24-PM-1-e1512735586246_nmkq4r_vadkae-500x179.png" class="attachment-medium size-medium wp-post-image" alt="Webinoly Một Sự Thay Thế Hoàn Hảo Cho EasyEngine" decoding="async" loading="lazy" srcset="/wp-content/uploads/2017/12/12-7-2017-6-38-24-PM-1-e1512735586246_nmkq4r_vadkae-500x179.png 500w, /wp-content/uploads/2017/12/12-7-2017-6-38-24-PM-1-e1512735586246_nmkq4r_vadkae-300x107.png 300w, /wp-content/uploads/2017/12/12-7-2017-6-38-24-PM-1-e1512735586246_nmkq4r_vadkae.png 725w, /wp-content/uploads/2017/12/12-7-2017-6-38-24-PM-1-e1512735586246_nmkq4r_vadkae-20x7.png 20w" sizes="(max-width: 500px) 100vw, 500px">				<h4 class="title">Webinoly – Đơn giản và mạnh mẽ</h4>
+			</a>
+		</li>
+			<li id="post-544" class="post-544 post type-post status-publish format-standard has-post-thumbnail hentry category-review">
+			<a href="/cloudflare-cdn-dsn-va-cache/">
+				<img width="500" height="354" src="/wp-content/uploads/2017/12/CloudFlare_ubsnyw_quk23b_adytw0_abhpy5_ghqua0_ecrcdl_cbosjw-500x354.png" class="attachment-medium size-medium wp-post-image" alt="CloudFlare" decoding="async" loading="lazy" srcset="/wp-content/uploads/2017/12/CloudFlare_ubsnyw_quk23b_adytw0_abhpy5_ghqua0_ecrcdl_cbosjw-500x354.png 500w, /wp-content/uploads/2017/12/CloudFlare_ubsnyw_quk23b_adytw0_abhpy5_ghqua0_ecrcdl_cbosjw-300x213.png 300w, /wp-content/uploads/2017/12/CloudFlare_ubsnyw_quk23b_adytw0_abhpy5_ghqua0_ecrcdl_cbosjw.png 725w, /wp-content/uploads/2017/12/CloudFlare_ubsnyw_quk23b_adytw0_abhpy5_ghqua0_ecrcdl_cbosjw-20x14.png 20w" sizes="(max-width: 500px) 100vw, 500px">				<h4 class="title">Cloudflare CDN, DNS và Cache – UPDATE 2022</h4>
+			</a>
+		</li>
+			<li id="post-1072" class="post-1072 post type-post status-publish format-standard has-post-thumbnail hentry category-advertisement category-toolbox">
+			<a href="/generatepress-lightweight-responsive-wordpress-theme/">
+				<img width="500" height="206" src="/wp-content/uploads/2017/12/GeneratePress-_-Lightweight-Responsive-WordPress-Theme_xflltm-500x206.jpg" class="attachment-medium size-medium wp-post-image" alt="GeneratePress – Lightweight, Responsive WordPress Theme" decoding="async" loading="lazy" srcset="/wp-content/uploads/2017/12/GeneratePress-_-Lightweight-Responsive-WordPress-Theme_xflltm-500x206.jpg 500w, /wp-content/uploads/2017/12/GeneratePress-_-Lightweight-Responsive-WordPress-Theme_xflltm-300x123.jpg 300w, /wp-content/uploads/2017/12/GeneratePress-_-Lightweight-Responsive-WordPress-Theme_xflltm-725x298.jpg 725w, /wp-content/uploads/2017/12/GeneratePress-_-Lightweight-Responsive-WordPress-Theme_xflltm-20x8.jpg 20w, /wp-content/uploads/2017/12/GeneratePress-_-Lightweight-Responsive-WordPress-Theme_xflltm.jpg 800w" sizes="(max-width: 500px) 100vw, 500px">				<h4 class="title">GeneratePress – Lightweight, Responsive WordPress Theme</h4>
+			</a>
+		</li>
+			<li id="post-1916" class="post-1916 post type-post status-publish format-standard has-post-thumbnail hentry category-advertisement category-review category-toolbox">
+			<a href="/perfmatters/">
+				<img width="500" height="282" src="/wp-content/uploads/2017/12/wordpress-performance-plugin-slider-6_si7udk-500x282.png" class="attachment-medium size-medium wp-post-image" alt="wordpress-performance-plugin-slider-6" decoding="async" loading="lazy" srcset="/wp-content/uploads/2017/12/wordpress-performance-plugin-slider-6_si7udk-500x282.png 500w, /wp-content/uploads/2017/12/wordpress-performance-plugin-slider-6_si7udk-300x169.png 300w, /wp-content/uploads/2017/12/wordpress-performance-plugin-slider-6_si7udk-725x410.png 725w, /wp-content/uploads/2017/12/wordpress-performance-plugin-slider-6_si7udk-20x11.png 20w, /wp-content/uploads/2017/12/wordpress-performance-plugin-slider-6_si7udk.png 1570w" sizes="(max-width: 500px) 100vw, 500px">				<h4 class="title">Perfmatters</h4>
+			</a>
+		</li>
+			<li id="post-6904" class="post-6904 post type-post status-publish format-standard has-post-thumbnail hentry category-toolbox">
+			<a href="/flyingpress-plugin-cache-hang-dau/">
+				<img width="855" height="315" src="/wp-content/uploads/2022/11/2022-11-12-22-22-23.png" class="attachment-medium size-medium wp-post-image" alt="2022-11-12_22-22-23" decoding="async" loading="lazy">				<h4 class="title">FlyingPress – plugin cache hàng đầu</h4>
+			</a>
+		</li>
+		</ul>
+<!-- .dpe-flexible-posts -->
+</aside>	</div>
+</div>
+
+	</div>
+<!-- #content -->
+</div>
+<!-- #page -->
+
+
+<div class="site-footer">
+			<footer class="site-info" aria-label="Site" itemtype="https://schema.org/WPFooter" itemscope>
+			<div class="inside-site-info grid-container grid-parent">
+								<div class="copyright-bar">
+					<div style="float:left">Copyright <i class="fa fa-copyright"></i> 2022 Master XinClub - Powered by <i class="fa fa-heart"></i> <a href="/cloud-vps-upcloud/" rel="bookmark">UpCloud</a> <i class="fa fa-heartbeat"></i> <a href="/webinoly-mot-su-thay-hoan-hao-cho-easyengine/" rel="bookmark">Webinoly</a> <i class="fa fa-cloud"></i> <a href="/cloudflare-cdn-dsn-va-cache/" rel="bookmark">Cloudflare</a> <i class="fa fa-moon-o"></i> <a href="http://localhost/generatepress-lightweight-responsive-wordpress-theme/">GeneratePress</a> <i class="fa fa-wordpress"></i> <a href="https://wordpress.org/" target="_blank" rel="noopener">WordPress</a>
+</div>				</div>
+			</div>
+		</footer>
+		</div>
+<!-- .site-footer -->
+
+<a title="Scroll back to top" aria-label="Scroll back to top" rel="nofollow" href="#" class="generate-back-to-top" data-scroll-speed="400" data-start-scroll="300">
+					
+				</a>		<span class="ssp-id" style="display:none">4473</span>
+		<script id="generate-a11y">!function(){"use strict";if("querySelector"in document&&"addEventListener"in window){var e=document.body;e.addEventListener("mousedown",function(){e.classList.add("using-mouse")}),e.addEventListener("keydown",function(){e.classList.remove("using-mouse")})}}();</script><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"/#website","url":"/","name":"BIBICA.NET","potentialAction":{"@id":"/nginx-fastcgi-cache-lieu-co-dang-dung#searchaction"},"publisher":{"@id":"/#organization"}},{"@type":"SearchAction","@id":"/nginx-fastcgi-cache-lieu-co-dang-dung#searchaction","target":"/?s={search_term_string}","query-input":"required name=search_term_string"},{"@type":"BreadcrumbList","name":"Breadcrumbs","@id":"/nginx-fastcgi-cache-lieu-co-dang-dung#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"/"},{"@type":"ListItem","position":2,"name":"Review","item":"/category/review/"}]},{"@type":"WebPage","@id":"/nginx-fastcgi-cache-lieu-co-dang-dung#webpage","url":"/nginx-fastcgi-cache-lieu-co-dang-dung","inLanguage":"en_US","name":"Nginx Fastcgi Cache, liệu có đáng dùng? – BIBICA.NET","description":"Đứng ở góc độ cá nhân, mình thấy WP Rocket là plugin cache tuyệt vời nhất, đơn giản vì họ vẫn đang support sản phẩm cực kì tốt, nôm na là dùng WP Rocket bạn có ","datePublished":"2018-05-20T05:46:33+00:00","dateModified":"2020-04-02T00:35:27+00:00","isPartOf":{"@id":"/#website"},"breadcrumb":{"@id":"/nginx-fastcgi-cache-lieu-co-dang-dung#breadcrumbs"},"primaryImageOfPage":{"@id":"/nginx-fastcgi-cache-lieu-co-dang-dung#thumbnail"},"image":{"@id":"/nginx-fastcgi-cache-lieu-co-dang-dung#thumbnail"}},{"@type":"Organization","@id":"/#organization","url":"/","name":"BIBICA.NET","logo":{"@id":"/nginx-fastcgi-cache-lieu-co-dang-dung#logo"},"image":{"@id":"/nginx-fastcgi-cache-lieu-co-dang-dung#logo"}},{"@type":"ImageObject","@id":"/nginx-fastcgi-cache-lieu-co-dang-dung#logo","url":"/wp-content/uploads/2017/12/cropped-563a3a6682276d793436-1.jpg","width":512,"height":512},{"@type":"ImageObject","@id":"/nginx-fastcgi-cache-lieu-co-dang-dung#thumbnail","url":"/wp-content/uploads/2018/05/wordpress-nginx-fastcgi.png","width":800,"height":400},{"@type":"Article","@id":"/nginx-fastcgi-cache-lieu-co-dang-dung#article","url":"/nginx-fastcgi-cache-lieu-co-dang-dung","headline":"Nginx Fastcgi Cache, liệu có đáng dùng?","datePublished":"2018-05-20T05:46:33+00:00","dateModified":"2020-04-02T00:35:27+00:00","commentCount":11,"wordCount":1113,"articleSection":["Review","Toolbox"],"isPartOf":{"@id":"/nginx-fastcgi-cache-lieu-co-dang-dung#webpage"},"mainEntityOfPage":{"@id":"/nginx-fastcgi-cache-lieu-co-dang-dung#webpage"},"image":{"@id":"/nginx-fastcgi-cache-lieu-co-dang-dung#thumbnail"},"publisher":{"@id":"/#organization"},"author":{"@id":"/nginx-fastcgi-cache-lieu-co-dang-dung#author"}},{"@type":"Person","@id":"/nginx-fastcgi-cache-lieu-co-dang-dung#author","url":"/author/bibica/","name":"bibica","image":{"@id":"/nginx-fastcgi-cache-lieu-co-dang-dung#author_image"}},{"@type":"ImageObject","@id":"/nginx-fastcgi-cache-lieu-co-dang-dung#author_image","url":"http://0.gravatar.com/avatar/cf204c301a46f1b6bc57ffdb8f82977e?s=96&d=mm&r=g","width":96,"height":96,"caption":"bibica"}]}</script><script type="text/javascript">
+		/* MonsterInsights Scroll Tracking */
+		if ( typeof(jQuery) !== 'undefined' ) {
+		jQuery( document ).ready(function(){
+		function monsterinsights_scroll_tracking_load() {
+		if ( ( typeof(__gaTracker) !== 'undefined' && __gaTracker && __gaTracker.hasOwnProperty( "loaded" ) && __gaTracker.loaded == true ) || ( typeof(__gtagTracker) !== 'undefined' && __gtagTracker ) ) {
+		(function(factory) {
+		factory(jQuery);
+		}(function($) {
+
+		/* Scroll Depth */
+		"use strict";
+		var defaults = {
+		percentage: true
+		};
+
+		var $window = $(window),
+		cache = [],
+		scrollEventBound = false,
+		lastPixelDepth = 0;
+
+		/*
+		* Plugin
+		*/
+
+		$.scrollDepth = function(options) {
+
+		var startTime = +new Date();
+
+		options = $.extend({}, defaults, options);
+
+		/*
+		* Functions
+		*/
+
+		function sendEvent(action, label, scrollDistance, timing) {
+		if ( 'undefined' === typeof MonsterInsightsObject || 'undefined' === typeof MonsterInsightsObject.sendEvent ) {
+		return;
+		}
+			var paramName = action.toLowerCase();
+	var fieldsArray = {
+	send_to: 'G-6Y2T5Q1R88',
+	non_interaction: true
+	};
+	fieldsArray[paramName] = label;
+
+	if (arguments.length > 3) {
+	fieldsArray.scroll_timing = timing
+	MonsterInsightsObject.sendEvent('event', 'scroll_depth', fieldsArray);
+	} else {
+	MonsterInsightsObject.sendEvent('event', 'scroll_depth', fieldsArray);
+	}
+			}
+
+		function calculateMarks(docHeight) {
+		return {
+		'25%' : parseInt(docHeight * 0.25, 10),
+		'50%' : parseInt(docHeight * 0.50, 10),
+		'75%' : parseInt(docHeight * 0.75, 10),
+		/* Cushion to trigger 100% event in iOS */
+		'100%': docHeight - 5
+		};
+		}
+
+		function checkMarks(marks, scrollDistance, timing) {
+		/* Check each active mark */
+		$.each(marks, function(key, val) {
+		if ( $.inArray(key, cache) === -1 && scrollDistance >= val ) {
+		sendEvent('Percentage', key, scrollDistance, timing);
+		cache.push(key);
+		}
+		});
+		}
+
+		function rounded(scrollDistance) {
+		/* Returns String */
+		return (Math.floor(scrollDistance/250) * 250).toString();
+		}
+
+		function init() {
+		bindScrollDepth();
+		}
+
+		/*
+		* Public Methods
+		*/
+
+		/* Reset Scroll Depth with the originally initialized options */
+		$.scrollDepth.reset = function() {
+		cache = [];
+		lastPixelDepth = 0;
+		$window.off('scroll.scrollDepth');
+		bindScrollDepth();
+		};
+
+		/* Add DOM elements to be tracked */
+		$.scrollDepth.addElements = function(elems) {
+
+		if (typeof elems == "undefined" || !$.isArray(elems)) {
+		return;
+		}
+
+		$.merge(options.elements, elems);
+
+		/* If scroll event has been unbound from window, rebind */
+		if (!scrollEventBound) {
+		bindScrollDepth();
+		}
+
+		};
+
+		/* Remove DOM elements currently tracked */
+		$.scrollDepth.removeElements = function(elems) {
+
+		if (typeof elems == "undefined" || !$.isArray(elems)) {
+		return;
+		}
+
+		$.each(elems, function(index, elem) {
+
+		var inElementsArray = $.inArray(elem, options.elements);
+		var inCacheArray = $.inArray(elem, cache);
+
+		if (inElementsArray != -1) {
+		options.elements.splice(inElementsArray, 1);
+		}
+
+		if (inCacheArray != -1) {
+		cache.splice(inCacheArray, 1);
+		}
+
+		});
+
+		};
+
+		/*
+		* Throttle function borrowed from:
+		* Underscore.js 1.5.2
+		* http://underscorejs.org
+		* (c) 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+		* Underscore may be freely distributed under the MIT license.
+		*/
+
+		function throttle(func, wait) {
+		var context, args, result;
+		var timeout = null;
+		var previous = 0;
+		var later = function() {
+		previous = new Date;
+		timeout = null;
+		result = func.apply(context, args);
+		};
+		return function() {
+		var now = new Date;
+		if (!previous) previous = now;
+		var remaining = wait - (now - previous);
+		context = this;
+		args = arguments;
+		if (remaining <= 0) {
+		clearTimeout(timeout);
+		timeout = null;
+		previous = now;
+		result = func.apply(context, args);
+		} else if (!timeout) {
+		timeout = setTimeout(later, remaining);
+		}
+		return result;
+		};
+		}
+
+		/*
+		* Scroll Event
+		*/
+
+		function bindScrollDepth() {
+
+		scrollEventBound = true;
+
+		$window.on('scroll.scrollDepth', throttle(function() {
+		/*
+		* We calculate document and window height on each scroll event to
+		* account for dynamic DOM changes.
+		*/
+
+		var docHeight = $(document).height(),
+		winHeight = window.innerHeight ? window.innerHeight : $window.height(),
+		scrollDistance = $window.scrollTop() + winHeight,
+
+		/* Recalculate percentage marks */
+		marks = calculateMarks(docHeight),
+
+		/* Timing */
+		timing = +new Date - startTime;
+
+		checkMarks(marks, scrollDistance, timing);
+		}, 500));
+
+		}
+
+		init();
+		};
+
+		/* UMD export */
+		return $.scrollDepth;
+
+		}));
+
+		jQuery.scrollDepth();
+		} else {
+		setTimeout(monsterinsights_scroll_tracking_load, 200);
+		}
+		}
+		monsterinsights_scroll_tracking_load();
+		});
+		}
+		/* End MonsterInsights Scroll Tracking */
+		
+</script>
+<link rel="stylesheet" id="et_bloom-css-css" href="/wp-content/plugins/bloom/css/style.css?ver=1.3.12" media="all">
+<script src="/wp-content/plugins/gp-premium/menu-plus/functions/js/sticky.min.js?ver=2.2.1" id="generate-sticky-js"></script>
+<script id="contact-form-7-js-extra">var wpcf7 = {"api":{"root":"\/wp-json\/","namespace":"contact-form-7\/v1"},"cached":"1"};</script>
+<script id="wpzerospam-js-extra">var wpzerospam = {"key":"wi0ktldp1iuJo@X9Eg8fh07kp!#i@!#^WioES9miJ(0%*job@yWBNu^AL4Yvfo)E"};</script>
+<script src="/wp-content/plugins/zero-spam-for-wordpress-4.6.0//assets/js/wpzerospam.js?ver=4.6.0" id="wpzerospam-js"></script>
+<script src="/wp-content/plugins/zero-spam-for-wordpress-4.6.0//integrations/contact-form-7/js/cf7.js?ver=4.6.0" id="wpzerospam-integration-cf7-js"></script>
+<script id="generate-smooth-scroll-js-extra">var smooth = {"elements":[".smooth-scroll","li.smooth-scroll a"],"duration":"800"};</script>
+<script src="/wp-content/plugins/gp-premium/general/js/smooth-scroll.min.js?ver=2.2.1" id="generate-smooth-scroll-js"></script>
+<!--[if lte IE 11]>
+<script src='http://localhost/bibica.net/wp-content/themes/generatepress/assets/js/classList.min.js?ver=3.2.4' id='generate-classlist-js'></script>
+<![endif]-->
+<script id="generate-menu-js-extra">var generatepressMenu = {"toggleOpenedSubMenus":"1","openSubMenuLabel":"Open Sub-Menu","closeSubMenuLabel":"Close Sub-Menu"};</script>
+<script src="/wp-content/themes/generatepress/assets/js/menu.min.js?ver=3.2.4" id="generate-menu-js"></script>
+<script id="generate-navigation-search-js-extra">var generatepressNavSearch = {"open":"Open Search Bar","close":"Close Search Bar"};</script>
+<script src="/wp-content/themes/generatepress/assets/js/navigation-search.min.js?ver=3.2.4" id="generate-navigation-search-js"></script>
+<script id="generate-back-to-top-js-extra">var generatepressBackToTop = {"smooth":"1"};</script>
+<script src="/wp-content/themes/generatepress/assets/js/back-to-top.min.js?ver=3.2.4" id="generate-back-to-top-js"></script>
+<script src="/wp-includes/js/comment-reply.min.js?ver=6.1.1" id="comment-reply-js"></script>
+<script src="/wp-content/plugins/bloom/core/admin/js/common.js?ver=4.9.3" id="et-core-common-js"></script>
+<script src="/wp-content/plugins/enlighter/cache/enlighterjs.min.js?ver=kqWMOImuOYrkq3u" id="enlighterjs-js"></script>
+<script id="enlighterjs-js-after">!function(e,n){if("undefined"!=typeof EnlighterJS){var o={"selectors":{"block":"pre.EnlighterJSRAW","inline":"code.EnlighterJSRAW"},"options":{"indent":2,"ampersandCleanup":true,"linehover":true,"rawcodeDbclick":false,"textOverflow":"scroll","linenumbers":true,"theme":"dracula","language":"generic","retainCssClasses":false,"collapse":false,"toolbarOuter":"","toolbarTop":"{BTN_RAW}{BTN_COPY}{BTN_WINDOW}{BTN_WEBSITE}","toolbarBottom":""}};(e.EnlighterJSINIT=function(){EnlighterJS.init(o.selectors.block,o.selectors.inline,o.options)})()}else{(n&&(n.error||n.log)||function(){})("Error: EnlighterJS resources not loaded yet!")}}(window,console);</script>
+<script data-cfasync="false" data-no-optimize="1" src="/wp-content/plugins/perfmatters/vendor/instant-page/instantpage.js?ver=2.0.0" id="perfmatters-instant-page-js"></script>
+<script src="/wp-content/plugins/bloom/js/jquery.uniform.min.js?ver=1.3.12" id="et_bloom-uniform-js-js"></script>
+<script id="et_bloom-custom-js-js-extra">var bloomSettings = {"ajaxurl":"\/wp-admin\/admin-ajax.php","pageurl":"\/nginx-fastcgi-cache-lieu-co-dang-dung\/","stats_nonce":"61bb30e5ac","subscribe_nonce":"83da8cdf27","is_user_logged_in":"not_logged"};</script>
+<script src="/wp-content/plugins/bloom/js/custom.js?ver=1.3.12" id="et_bloom-custom-js-js"></script>
+<script src="/wp-content/plugins/bloom/js/idle-timer.min.js?ver=1.3.12" id="et_bloom-idle-timer-js-js"></script>
+<script src="/wp-content/plugins/zero-spam-for-wordpress-4.6.0//integrations/comments/js/comments.js?ver=4.6.0" id="wpzerospam-integration-comments-js"></script>
+
+<script>(function(){const dpi=window.devicePixelRatio>1?2:1;const images=document.querySelectorAll("img[data-origin-src]");images.forEach(function(image){const image_width=image.offsetWidth*dpi;const render_width=Math.ceil(image_width/100)*100;const origin_src=image.getAttribute("data-origin-src");image.src=`${origin_src}?width=${render_width}`})})();(function(){const events=["mouseover","keydown","touchstart","touchmove","wheel"];const elements=document.querySelectorAll("[data-lazy-method='interaction']");if(!elements.length)return;function load_elements(){clearTimeout(timeout);events.forEach(function(event){window.removeEventListener(event,load_elements,{passive:true})});elements.forEach(function(element){element.getAttribute("data-lazy-attributes").split(",").forEach(function(attribute){const value=element.getAttribute("data-lazy-".concat(attribute));element.setAttribute(attribute,value)})})}const timeout=setTimeout(load_elements,1e4);events.forEach(function(event){window.addEventListener(event,load_elements,{passive:true})})})();(function(){const observer=new IntersectionObserver(function(elements){elements.forEach(function(element){if(element.isIntersecting){observer.unobserve(element.target);element.target.getAttribute("data-lazy-attributes").split(",").forEach(function(attribute){const value=element.target.getAttribute("data-lazy-".concat(attribute));element.target.setAttribute(attribute,value)})}})},{rootMargin:"300px"});document.querySelectorAll("[data-lazy-method='viewport']").forEach(function(element){observer.observe(element)})})();</script>
+</body>
+</html>
